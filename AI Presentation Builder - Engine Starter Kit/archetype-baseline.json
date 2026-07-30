@@ -1,0 +1,224 @@
+{
+ "version": "1.3",
+ "date": "2026-07-08",
+ "groups": {
+  "Openers": [
+   {
+    "id": "A01",
+    "name": "Cover \u2013 brand photo",
+    "status": "COVERED",
+    "layout": "Cover \u2013 Brand"
+   },
+   {
+    "id": "A02",
+    "name": "Cover \u2013 dark minimal",
+    "status": "COVERED",
+    "layout": "Cover \u2013 Dark"
+   },
+   {
+    "id": "A03",
+    "name": "Agenda / contents",
+    "status": "COVERED",
+    "layout": "Agenda \u2013 5/6 Items"
+   },
+   {
+    "id": "A04",
+    "name": "Section divider",
+    "status": "COVERED",
+    "layout": "Blue/White Section Divider"
+   }
+  ],
+  "Content": [
+   {
+    "id": "B01",
+    "name": "Title + bullets",
+    "status": "COVERED",
+    "layout": "Title and Content 1\u20137"
+   },
+   {
+    "id": "B02",
+    "name": "Card grid (3\u20134 cols)",
+    "status": "COVERED",
+    "layout": "Content \u2013 Cards 3/4"
+   },
+   {
+    "id": "B03",
+    "name": "Cards with bullet lists",
+    "status": "COVERED",
+    "layout": "Content \u2013 Cards 3/4"
+   },
+   {
+    "id": "B04",
+    "name": "Image + text split",
+    "status": "COVERED",
+    "layout": "Content \u2013 Image Right"
+   },
+   {
+    "id": "B05",
+    "name": "Full-bleed image statement",
+    "status": "COVERED",
+    "layout": "Statement \u2013 Full Bleed"
+   },
+   {
+    "id": "B06",
+    "name": "Quote / testimonial",
+    "status": "COVERED",
+    "layout": "Quote"
+   },
+   {
+    "id": "B07",
+    "name": "Big statement / callout slide",
+    "status": "PARTIAL",
+    "layout": "Content Slide 4 \u2013 Statement + CTA"
+   },
+   {
+    "id": "B08",
+    "name": "Two-column comparison (vs)",
+    "status": "COVERED",
+    "layout": "Content \u2013 Comparison"
+   },
+   {
+    "id": "B09",
+    "name": "FAQ / Q&A",
+    "status": "COVERED",
+    "layout": "FAQ"
+   },
+   {
+    "id": "B10",
+    "name": "Thesis / argument opener",
+    "status": "COVERED",
+    "layout": "Thesis"
+   }
+  ],
+  "ProcessTime": [
+   {
+    "id": "C01",
+    "name": "Process flow (linear)",
+    "status": "COVERED",
+    "layout": "Content \u2013 Process Flow"
+   },
+   {
+    "id": "C02",
+    "name": "Timeline / roadmap (date axis)",
+    "status": "COVERED",
+    "layout": "Roadmap \u2013 4 Phases (kit for variable cases)"
+   },
+   {
+    "id": "C03",
+    "name": "Cycle / loop diagram",
+    "status": "KIT",
+    "layout": "kit: flow variants"
+   },
+   {
+    "id": "C04",
+    "name": "Gantt / phase plan",
+    "status": "PARTIAL",
+    "layout": "Roadmap \u2013 4 Phases / kit"
+   }
+  ],
+  "Data": [
+   {
+    "id": "D01",
+    "name": "Data table",
+    "status": "COVERED",
+    "layout": "Content \u2013 Table"
+   },
+   {
+    "id": "D02",
+    "name": "Chart + takeaway",
+    "status": "COVERED",
+    "layout": "Content \u2013 Chart"
+   },
+   {
+    "id": "D03",
+    "name": "KPI / stat dashboard (big numbers)",
+    "status": "COVERED",
+    "layout": "KPI \u2013 4 Stats"
+   },
+   {
+    "id": "D04",
+    "name": "Score / progress bars",
+    "status": "KIT",
+    "layout": "kit: score bars"
+   },
+   {
+    "id": "D05",
+    "name": "2x2 matrix",
+    "status": "COVERED",
+    "layout": "Matrix 2x2"
+   }
+  ],
+  "PeopleProof": [
+   {
+    "id": "E01",
+    "name": "Team",
+    "status": "COVERED",
+    "layout": "Meet the Team"
+   },
+   {
+    "id": "E02",
+    "name": "Org chart",
+    "status": "COVERED",
+    "layout": "Org Chart"
+   },
+   {
+    "id": "E03",
+    "name": "Logo wall (clients/partners)",
+    "status": "COVERED",
+    "layout": "Logo Wall"
+   },
+   {
+    "id": "E04",
+    "name": "Case study",
+    "status": "COVERED",
+    "layout": "Case Study"
+   },
+   {
+    "id": "E05",
+    "name": "Awards / credentials",
+    "status": "COVERED",
+    "layout": "Awards & Accolades (static)"
+   }
+  ],
+  "Commercial": [
+   {
+    "id": "F01",
+    "name": "Pricing / stat card",
+    "status": "COVERED",
+    "layout": "Content \u2013 Pricing Stat"
+   },
+   {
+    "id": "F02",
+    "name": "Pricing options table",
+    "status": "PARTIAL",
+    "layout": "Content \u2013 Table"
+   },
+   {
+    "id": "F03",
+    "name": "Prerequisites / terms",
+    "status": "COVERED",
+    "layout": "Cards 3 / Title and Content"
+   }
+  ],
+  "Closers": [
+   {
+    "id": "G01",
+    "name": "Summary + CTA",
+    "status": "COVERED",
+    "layout": "Content Slide 1 \u2013 Body + CTA"
+   },
+   {
+    "id": "G02",
+    "name": "Next steps",
+    "status": "COVERED",
+    "layout": "Closing \u2013 Next Steps"
+   },
+   {
+    "id": "G03",
+    "name": "Thank you / contact",
+    "status": "COVERED",
+    "layout": "Closing \u2013 ZA / Closing \u2013 Next Steps"
+   }
+  ]
+ }
+}
