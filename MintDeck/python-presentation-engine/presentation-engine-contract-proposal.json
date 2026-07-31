@@ -1,0 +1,123 @@
+{
+  "deck": {
+    "client": "Contoso Manufacturing",
+    "title": "Microsoft 365 Copilot Adoption",
+    "mode": "LIVE"
+  },
+  "slides": [
+    {
+      "archetype": "cover",
+      "fields": {
+        "title": "Microsoft 365 Copilot Adoption",
+        "kicker": "PREPARED FOR CONTOSO MANUFACTURING",
+        "subtitle": "Turning AI assistance into measurable productivity gains"
+      }
+    },
+    {
+      "archetype": "statement",
+      "action_title": "AI-powered work is becoming the new productivity baseline.",
+      "fields": {
+        "statement": "Organizations that embed AI into daily work are creating a widening productivity advantage."
+      }
+    },
+    {
+      "archetype": "cards3",
+      "action_title": "Three barriers are slowing Copilot value across the business.",
+      "fields": {
+        "kicker": "THE STAKES",
+        "cards": [
+          {
+            "title": "Low Awareness",
+            "body": "Employees are unsure where Copilot delivers immediate value."
+          },
+          {
+            "title": "Inconsistent Usage",
+            "body": "Adoption varies widely between teams and functions."
+          },
+          {
+            "title": "Governance Concerns",
+            "body": "Data access and compliance questions delay rollout."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "thesis",
+      "action_title": "A structured adoption program accelerates value while reducing risk.",
+      "fields": {
+        "kicker": "OUR ANSWER",
+        "claims": [
+          "Copilot succeeds when usage is tied to business outcomes.",
+          "Governance and enablement must scale together."
+        ],
+        "pivot_question": "How can Contoso drive adoption quickly without increasing risk?",
+        "verdict": "A phased adoption model delivers measurable productivity gains and controlled governance."
+      }
+    },
+    {
+      "archetype": "chart",
+      "action_title": "Productivity gains increase as adoption expands across priority teams.",
+      "fields": {
+        "headline": "Productivity improvement grows with adoption maturity",
+        "required_data": "Monthly adoption rate and estimated productivity improvement by business unit",
+        "highlighted_series": "Productivity Improvement"
+      }
+    },
+    {
+      "archetype": "process_flow",
+      "action_title": "Four workstreams move users from awareness to daily usage.",
+      "fields": {
+        "steps": [
+          "Prepare governance",
+          "Identify priority scenarios",
+          "Enable and train users",
+          "Measure and optimize outcomes"
+        ]
+      }
+    },
+    {
+      "archetype": "roadmap",
+      "action_title": "Adoption reaches scale through four planned phases.",
+      "fields": {
+        "phases": [
+          "Foundation",
+          "Pilot",
+          "Expansion",
+          "Optimization"
+        ]
+      }
+    },
+    {
+      "archetype": "case_study",
+      "action_title": "A phased rollout delivered measurable productivity improvements.",
+      "fields": {
+        "kicker": "PROOF",
+        "client_line": "Global manufacturing organization",
+        "challenge": "Knowledge workers spent excessive time searching for information and creating content.",
+        "approach": "Introduced Copilot through targeted use cases, governance controls, and role-based training.",
+        "outcome": "Adoption expanded steadily across departments with strong user engagement.",
+        "headline_result": "Employees reported significant time savings on recurring tasks."
+      }
+    },
+    {
+      "archetype": "quote",
+      "action_title": "Users quickly recognize value when Copilot supports daily workflows.",
+      "fields": {
+        "quote": "Copilot reduced the time needed to prepare reports and summarize information, allowing teams to focus on higher-value work.",
+        "attribution": "Operations Leader"
+      }
+    },
+    {
+      "archetype": "closing",
+      "action_title": "The next step is launching a focused adoption pilot.",
+      "fields": {
+        "steps": [
+          "Confirm pilot scope and success measures",
+          "Select priority business scenarios",
+          "Enable pilot users and champions",
+          "Review outcomes and plan expansion"
+        ]
+      }
+    }
+  ]
+}

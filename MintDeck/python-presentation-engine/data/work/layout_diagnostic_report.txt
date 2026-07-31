@@ -1,0 +1,53 @@
+Presentation Engine Layout Diagnostic Report
+============================================
+
+POTX template: C:\Users\NdivhuwoNeswiswi\OneDrive - Mint Management Technologies\Projects\MiniDeckBuilder\-Mint-Deck-Builder\MintDeck\python-presentation-engine\data\work\template\FY27 AI-Ready v3.0.potx
+Converted PPTX: C:\Users\NdivhuwoNeswiswi\OneDrive - Mint Management Technologies\Projects\MiniDeckBuilder\-Mint-Deck-Builder\MintDeck\python-presentation-engine\data\work\template\FY27 AI-Ready v3.0.work.pptx
+Layout count: 45
+
+Discovered layouts:
+- About Mint Group
+- Agenda – 6 Items
+- Awards & Accolades
+- Blank
+- Case Study
+- Closing – Next Steps
+- Closing – ZA
+- Cloud Partner
+- Content Slide 1 – Body + CTA
+- Content Slide 3 – Centre
+- Content Slide 5 – 3 Blocks
+- Content Slide 6 – Focus + CTA
+- Content – Cards 3
+- Content – Cards 4
+- Content – Chart
+- Content – Comparison
+- Content – Image Right
+- Content – Pricing Stat
+- Content – Process Flow
+- Content – Table
+- Cover – Brand
+- Cover – Dark
+- FAQ
+- Impact Map
+- Industry Expertise
+- Industry Experts
+- KPI – 4 Stats
+- Logo Wall
+- Matrix 2x2
+- Meet the Team
+- Mission
+- Org Chart
+- Quote
+- Roadmap – 4 Phases
+- Solutions Designations Badge 2
+- Statement – Full Bleed
+- Thesis
+- Title Slide – Option 1
+- Title Slide – Option 2
+- Title Slide – Option 5
+- Title Slide – Simple
+- Title and Content 3
+- Title and Content 4
+- Title and Content 7
+- White Section Divider
