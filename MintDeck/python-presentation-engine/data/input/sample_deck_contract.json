@@ -1,0 +1,52 @@
+{
+  "deck": {
+    "client": "Contoso Manufacturing",
+    "title": "Microsoft 365 Copilot Adoption",
+    "mode": "STAGE"
+  },
+  "slides": [
+    {
+      "archetype": "cover",
+      "fields": {
+        "title": "Microsoft 365 Copilot Adoption",
+        "kicker": "PREPARED FOR CONTOSO MANUFACTURING",
+        "subtitle": "Turning AI assistance into measurable productivity gains"
+      }
+    },
+    {
+      "archetype": "cards3",
+      "action_title": "Three barriers are slowing Copilot value across the business.",
+      "fields": {
+        "kicker": "THE STAKES",
+        "cards": [
+          {
+            "title": "Low Awareness",
+            "body": "Employees are unsure where Copilot delivers immediate value."
+          },
+          {
+            "title": "Inconsistent Usage",
+            "body": "Adoption varies widely between teams and functions."
+          },
+          {
+            "title": "Governance Concerns",
+            "body": "Data access and compliance questions delay rollout."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "closing",
+      "action_title": "The next step is launching a focused adoption pilot.",
+      "fields": {
+        "steps": [
+          "Confirm pilot scope and success measures",
+          "Select priority business scenarios",
+          "Enable pilot users and champions",
+          "Review outcomes and plan expansion"
+        ]
+      }
+    }
+  ]
+}
+
+

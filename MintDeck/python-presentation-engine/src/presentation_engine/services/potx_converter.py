@@ -127,17 +127,34 @@ class PotxConverter:
             raise PotxConversionError(f"Failed to update OpenXML content types file: {content_types_path}") from exc
 
     def _create_pptx_package(self, extraction_dir: Path, destination_path: Path, overwrite: bool) -> None:
-        archive_base_path = destination_path.with_suffix("")
-        temporary_zip_path = archive_base_path.with_suffix(".zip")
-
-        if destination_path.exists() and overwrite:
-            destination_path.unlink()
-
-        if temporary_zip_path.exists():
-            temporary_zip_path.unlink()
-
-        try:
-            created_archive_path = shutil.make_archive(str(archive_base_path), "zip", extraction_dir)
-            Path(created_archive_path).rename(destination_path)
-        except Exception as exc:
-            raise PotxConversionError(f"Failed to create PPTX package: {destination_path}") from exc
+            archive_base_path = destination_path.with_suffix("")
+            temporary_zip_path = archive_base_path.with_suffix(".zip")
+    
+            if destination_path.exists():
+                if not overwrite:
+                    raise PotxConversionError(
+                        f"Destination already exists and overwrite is disabled: {destination_path}"
+                    )
+                destination_path.unlink()
+    
+            if temporary_zip_path.exists():
+                temporary_zip_path.unlink()
+    
+            try:
+                created_archive_path = shutil.make_archive(
+                    base_name=str(archive_base_path),
+                    format="zip",
+                    root_dir=extraction_dir,
+                )
+    
+                created_archive = Path(created_archive_path)
+    
+                if destination_path.exists():
+                    destination_path.unlink()
+    
+                created_archive.replace(destination_path)
+    
+            except Exception as exc:
+                raise PotxConversionError(
+                    f"Failed to create fresh PPTX package: {destination_path}"
+                ) from exc

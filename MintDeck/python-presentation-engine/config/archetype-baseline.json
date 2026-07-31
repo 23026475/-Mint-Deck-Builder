@@ -1,0 +1,16 @@
+{
+  "archetypes": [
+    {
+      "archetype": "cover",
+      "layout": "Cover – Brand"
+    },
+    {
+      "archetype": "cards3",
+      "layout": "Content – Cards 3"
+    },
+    {
+      "archetype": "closing",
+      "layout": "Closing – Next Steps"
+    }
+  ]
+}

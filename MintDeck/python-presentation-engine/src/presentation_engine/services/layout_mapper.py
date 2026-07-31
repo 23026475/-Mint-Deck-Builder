@@ -1,3 +1,4 @@
+
 """
 Layout mapper for the Python Presentation Engine.
 
@@ -140,6 +141,7 @@ class LayoutMapper:
 
         self.log.info("Loaded %s slide layouts from template.", len(layouts_by_name))
         self.log.debug("Available slide layouts: %s", sorted(layouts_by_name.keys()))
+
 
     def get_layout(self, name: str) -> SlideLayout:
         """
