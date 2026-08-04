@@ -73,14 +73,26 @@ class ArchetypeMapperTests(unittest.TestCase):
                 temp_dir,
                 {
                     "archetypes": [
-                        {"archetype": "cards3", "layout": "Content - Cards 3"}
+                        {
+                            "archetype": "cards3",
+                            "layout": "Content - Cards 3",
+                        }
                     ]
                 },
             )
+
             layout_mapper = FakeLayoutMapper(set())
 
-            with self.assertRaisesRegex(ArchetypeMappingException, "could not be found"):
-                ArchetypeMapper(layout_mapper=layout_mapper, baseline_path=baseline_path)
+            mapper = ArchetypeMapper(
+                layout_mapper=layout_mapper,
+                baseline_path=baseline_path,
+            )
+
+            with self.assertRaisesRegex(
+                ArchetypeMappingException,
+                "could not be found",
+            ):
+                mapper.get_layout_for_archetype("cards3")
 
     def test_duplicate_archetype_definitions_raise_exception(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

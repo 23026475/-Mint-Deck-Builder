@@ -26,9 +26,26 @@ class FakeTemplateConverter:
         self.converted_pptx_path = converted_pptx_path
         self.calls: list[tuple[Path, Path, bool]] = []
 
-    def convert(self, potx_path: str | Path, pptx_path: str | Path, overwrite: bool = True) -> Path:
+    def convert(
+        self,
+        potx_path: str | Path,
+        pptx_path: str | Path,
+        overwrite: bool = True,
+    ) -> Path:
         self.calls.append((Path(potx_path), Path(pptx_path), overwrite))
         return self.converted_pptx_path
+
+
+class NoOpPlaceholderBuilder:
+    """
+    Keeps this integration test focused on DeckBuilder orchestration.
+
+    PlaceholderBuilder has its own focused unit tests. This integration test uses
+    a blank fake template, so it should not require real FY27 placeholder indexes.
+    """
+
+    def populate(self, slide, slide_definition) -> None:
+        return None
 
 
 class DeckBuilderIntegrationTests(unittest.TestCase):
@@ -37,24 +54,32 @@ class DeckBuilderIntegrationTests(unittest.TestCase):
             base_dir = Path(temp_dir)
             config = self._create_config(base_dir)
             config.ensure_runtime_directories()
+
             self._write_archetype_baseline(base_dir)
             self._write_sample_contract(config.input.contract_path)
 
             potx_path = config.template.downloaded_potx_path
             potx_path.write_bytes(b"local development potx placeholder")
 
-            self._create_converted_template_with_sample_slides(config.template.converted_pptx_path)
+            self._create_converted_template_with_sample_slides(
+                config.template.converted_pptx_path
+            )
 
             builder = DeckBuilder(
                 engine_config=config,
                 template_retriever=FakeTemplateRetriever(potx_path),
-                template_converter=FakeTemplateConverter(config.template.converted_pptx_path),
+                template_converter=FakeTemplateConverter(
+                    config.template.converted_pptx_path
+                ),
+                placeholder_builder=NoOpPlaceholderBuilder(),
             )
 
             result = builder.build_from_contract_file()
 
             self.assertTrue(result.output_pptx_path.exists())
+
             generated = Presentation(str(result.output_pptx_path))
+
             self.assertEqual(len(generated.slides), 3)
             self.assertEqual(result.slide_count, 3)
 
@@ -91,6 +116,7 @@ class DeckBuilderIntegrationTests(unittest.TestCase):
     def _write_archetype_baseline(self, base_dir: Path) -> None:
         config_dir = base_dir / "config"
         config_dir.mkdir(parents=True, exist_ok=True)
+
         baseline = {
             "archetypes": [
                 {"archetype": "cover", "layout": "Blank"},
@@ -98,25 +124,49 @@ class DeckBuilderIntegrationTests(unittest.TestCase):
                 {"archetype": "closing", "layout": "Blank"},
             ]
         }
-        (config_dir / "archetype-baseline.json").write_text(json.dumps(baseline), encoding="utf8")
+
+        (config_dir / "archetype-baseline.json").write_text(
+            json.dumps(baseline),
+            encoding="utf8",
+        )
 
     def _write_sample_contract(self, contract_path: Path) -> None:
         contract = {
-            "deck": {"client": "Acme Bank", "title": "Milestone Test", "mode": "READ"},
+            "deck": {
+                "client": "Acme Bank",
+                "title": "Milestone Test",
+                "mode": "STAGE",
+            },
             "slides": [
-                {"archetype": "cover", "fields": {"title": "Milestone Test"}},
-                {"archetype": "cards3", "action_title": "Three risks need attention", "fields": {}},
-                {"archetype": "closing", "action_title": "From today to kickoff", "fields": {}},
+                {
+                    "archetype": "cover",
+                    "fields": {
+                        "title": "Milestone Test",
+                    },
+                },
+                {
+                    "archetype": "cards3",
+                    "action_title": "Three risks need attention",
+                    "fields": {},
+                },
+                {
+                    "archetype": "closing",
+                    "action_title": "From today to kickoff",
+                    "fields": {},
+                },
             ],
         }
+
         contract_path.write_text(json.dumps(contract), encoding="utf8")
 
     def _create_converted_template_with_sample_slides(self, template_path: Path) -> None:
         presentation = Presentation()
         blank_layout = presentation.slide_layouts[6]
+
         presentation.slides.add_slide(blank_layout)
         presentation.slides.add_slide(blank_layout)
         presentation.slides.add_slide(blank_layout)
+
         template_path.parent.mkdir(parents=True, exist_ok=True)
         presentation.save(str(template_path))
 

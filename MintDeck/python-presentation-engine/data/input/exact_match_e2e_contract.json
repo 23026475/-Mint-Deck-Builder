@@ -1,0 +1,355 @@
+{
+  "deck": {
+    "client": "Contoso Manufacturing",
+    "title": "AI-Ready Exact-Match Archetype Validation",
+    "mode": "STAGE"
+  },
+  "slides": [
+    {
+      "archetype": "cover",
+      "fields": {
+        "title": "AI-Ready Adoption Validation",
+        "kicker": "PREPARED FOR CONTOSO MANUFACTURING",
+        "subtitle": "End-to-end validation of exact-match archetype support",
+        "abstract": "This deck validates layout resolution, placeholder filling, package hygiene and slide generation.",
+        "prepared-by": "Prepared by Mint Group · August 2026"
+      }
+    },
+    {
+      "archetype": "cover_dark",
+      "fields": {
+        "title": "Exact-match archetypes are now ready for validation",
+        "subtitle": "Baseline-aligned implementation check",
+        "abstract": "This section validates the currently supported FY27 exact-match layouts.",
+        "kicker": "VALIDATION"
+      }
+    },
+    {
+      "archetype": "statement",
+      "action_title": "AI-ready work now depends on governed adoption.",
+      "fields": {
+        "kicker": "THE SHIFT",
+        "statement": "AI adoption creates value only when governance, enablement and measurement move together."
+      }
+    },
+    {
+      "archetype": "thesis",
+      "action_title": "A phased adoption model reduces risk while building momentum.",
+      "fields": {
+        "kicker": "THE THESIS",
+        "claims": [
+          "Teams adopt faster when scenarios are tied to measurable outcomes.",
+          "Governance must scale at the same pace as usage."
+        ],
+        "pivot_question": "How can Contoso expand AI usage without increasing operational risk?",
+        "verdict": "A phased model gives teams practical value while keeping control points visible."
+      }
+    },
+    {
+      "archetype": "cards3",
+      "action_title": "Three barriers slow practical Copilot adoption.",
+      "fields": {
+        "kicker": "THE STAKES",
+        "cards": [
+          {
+            "title": "Awareness",
+            "body": "Users are unsure where Copilot helps in daily work."
+          },
+          {
+            "title": "Consistency",
+            "body": "Usage patterns vary across departments and roles."
+          },
+          {
+            "title": "Governance",
+            "body": "Data access questions delay broader rollout."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "image_right",
+      "action_title": "The adoption journey needs clear ownership and focus.",
+      "fields": {
+        "kicker": "OPERATING MODEL",
+        "body": "A focused pilot creates a controlled environment for validating scenarios, measuring outcomes and refining the enablement model before expansion."
+      }
+    },
+    {
+      "archetype": "comparison",
+      "action_title": "Governed rollout outperforms informal adoption.",
+      "fields": {
+        "kicker": "OPTIONS",
+        "columns": [
+          {
+            "heading": "Informal adoption",
+            "points": [
+              "Uneven usage",
+              "Limited measurement",
+              "Reactive governance"
+            ]
+          },
+          {
+            "heading": "Governed rollout",
+            "points": [
+              "Priority scenarios",
+              "Usage evidence",
+              "Controlled expansion"
+            ]
+          }
+        ],
+        "verdict": "Governed rollout gives leadership better visibility and lower execution risk."
+      }
+    },
+    {
+      "archetype": "faq",
+      "action_title": "The pilot answers the questions leaders ask first.",
+      "fields": {
+        "kicker": "FAQ",
+        "items": [
+          {
+            "question": "Where should we start?",
+            "answer": "Start with high-frequency knowledge work and repeatable scenarios."
+          },
+          {
+            "question": "How do we measure value?",
+            "answer": "Track adoption, time saved and quality improvements by scenario."
+          },
+          {
+            "question": "How do we reduce risk?",
+            "answer": "Align enablement with data access and governance controls."
+          },
+          {
+            "question": "When do we expand?",
+            "answer": "Expand after the pilot shows repeatable value and clear operating ownership."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "process_flow",
+      "action_title": "Four workstreams move users from awareness to daily usage.",
+      "fields": {
+        "kicker": "WORKSTREAMS",
+        "steps": [
+          {
+            "title": "Prepare",
+            "body": "Confirm governance and success measures."
+          },
+          {
+            "title": "Prioritise",
+            "body": "Select business scenarios and pilot teams."
+          },
+          {
+            "title": "Enable",
+            "body": "Train users and champions with role-based guidance."
+          },
+          {
+            "title": "Measure",
+            "body": "Review outcomes and tune the expansion plan."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "table",
+      "action_title": "The pilot tracks adoption, value and governance evidence.",
+      "fields": {
+        "kicker": "MEASURES",
+        "intro": "The pilot scorecard keeps the work focused on adoption, impact and risk controls.",
+        "table_text": "Metric | Baseline | Target\nActive usage | TBD | 70% pilot users\nTime saved | TBD | 2 hours per user/week\nGovernance exceptions | TBD | Zero critical issues",
+        "callout": "The same scorecard can be reused when the programme expands."
+      }
+    },
+    {
+      "archetype": "chart",
+      "action_title": "Adoption maturity should increase across the pilot cycle.",
+      "fields": {
+        "kicker": "TREND",
+        "takeaway": "Adoption maturity should grow as teams move from awareness into repeated scenario use.",
+        "secondary_takeaway": "Use the chart placeholder for adoption and productivity series in the next phase.",
+        "source": "Validation sample data placeholder"
+      }
+    },
+    {
+      "archetype": "kpi",
+      "action_title": "Four indicators show whether adoption is moving.",
+      "fields": {
+        "kicker": "KPI SNAPSHOT",
+        "stats": [
+          {
+            "number": "70%",
+            "label": "Pilot active usage target"
+          },
+          {
+            "number": "2h",
+            "label": "Weekly time-saving target"
+          },
+          {
+            "number": "4",
+            "label": "Priority scenarios"
+          },
+          {
+            "number": "0",
+            "label": "Critical governance exceptions"
+          }
+        ],
+        "context": "These indicators are sample validation values for placeholder population."
+      }
+    },
+    {
+      "archetype": "matrix",
+      "action_title": "Priority scenarios balance impact and readiness.",
+      "fields": {
+        "kicker": "PRIORITISATION",
+        "quadrants": [
+          {
+            "title": "Quick wins",
+            "items": [
+              "Meeting summaries",
+              "Document drafting"
+            ]
+          },
+          {
+            "title": "Big bets",
+            "items": [
+              "Knowledge discovery",
+              "Process automation"
+            ]
+          },
+          {
+            "title": "Fill-ins",
+            "items": [
+              "Prompt coaching",
+              "Champion support"
+            ]
+          },
+          {
+            "title": "Question marks",
+            "items": [
+              "Complex agent workflows",
+              "External data automation"
+            ]
+          }
+        ],
+        "vertical_axis": "Impact",
+        "horizontal_axis": "Readiness"
+      }
+    },
+    {
+      "archetype": "team",
+      "action_title": "A small delivery group keeps the pilot moving.",
+      "fields": {
+        "members": [
+          {
+            "name": "Pilot Owner",
+            "role": "Business sponsor"
+          },
+          {
+            "name": "Adoption Lead",
+            "role": "Enablement and champions"
+          },
+          {
+            "name": "Governance Lead",
+            "role": "Access and compliance"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "org_chart",
+      "action_title": "Governance ownership stays visible throughout the pilot.",
+      "fields": {
+        "kicker": "GOVERNANCE",
+        "top_role": "Steering owner",
+        "leads": [
+          "Business lead",
+          "Technology lead",
+          "Governance lead"
+        ],
+        "teams": [
+          "Pilot users",
+          "Champions network",
+          "Support team"
+        ],
+        "note": "Escalation routes should be confirmed before launch."
+      }
+    },
+    {
+      "archetype": "logo_wall",
+      "action_title": "The model can scale across departments and partners.",
+      "fields": {
+        "kicker": "SCALE",
+        "caption": "Logo placeholders are intentionally empty in this validation run."
+      }
+    },
+    {
+      "archetype": "case_study",
+      "action_title": "A controlled pilot creates evidence for expansion.",
+      "fields": {
+        "kicker": "PROOF",
+        "client_line": "Global manufacturing organisation",
+        "challenge": "Teams had uneven adoption and limited visibility into where AI was helping.",
+        "approach": "The rollout focused on priority scenarios, role-based enablement and governance checks.",
+        "outcome": "Pilot teams built repeatable usage patterns and clearer success measures.",
+        "headline_result": "The pilot created an evidence base for scaling adoption."
+      }
+    },
+    {
+      "archetype": "quote",
+      "fields": {
+        "quote": "Copilot became easier to adopt once teams could see which workflows it improved and how success would be measured.",
+        "attribution": "Operations Leader",
+        "role": "Pilot stakeholder"
+      }
+    },
+    {
+      "archetype": "pricing_stat",
+      "action_title": "The pilot investment is measured against adoption outcomes.",
+      "fields": {
+        "kicker": "COMMERCIAL VIEW",
+        "lead_in": "The validation deck uses sample commercial placeholders.",
+        "bullet_columns": [
+          [
+            "Pilot scope confirmed",
+            "Success measures defined"
+          ],
+          [
+            "Governance route agreed",
+            "Expansion decision prepared"
+          ]
+        ],
+        "stat": {
+          "number": "90 days",
+          "kicker": "Pilot window",
+          "secondary": "Validation period",
+          "term": "Structured adoption pilot",
+          "note": "Final pricing is not part of this validation deck."
+        },
+        "fine_print": "Sample validation text only."
+      }
+    },
+    {
+      "archetype": "summary_cta",
+      "action_title": "The validation package is ready for review.",
+      "fields": {
+        "subheading": "Exact-match archetype coverage",
+        "body": "The generated deck should confirm that every supported exact-match archetype resolves, populates and saves cleanly.",
+        "cta": "Review output and approve next implementation phase."
+      }
+    },
+    {
+      "archetype": "closing",
+      "action_title": "Next step is visual QA and Carel review.",
+      "fields": {
+        "kicker": "NEXT STEPS",
+        "steps": [
+          "Open the generated PPTX and confirm no repair prompt.",
+          "Confirm duplicate ZIP entries remain at zero.",
+          "Review rendered slides for placeholder prompts and visual defects.",
+          "Send the deck, contract and validation report for acceptance."
+        ],
+        "footer": "Mint Group · Contoso Manufacturing · AI-Ready Adoption Validation · 2026"
+      }
+    }
+  ]
+}
