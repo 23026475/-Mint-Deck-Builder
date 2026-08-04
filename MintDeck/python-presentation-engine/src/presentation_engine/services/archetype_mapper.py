@@ -2,22 +2,24 @@
 Archetype mapper for the Python Presentation Engine.
 
 Responsibility:
-- Load archetype definitions from config/archetype-baseline.json.
-- Resolve JSON contract archetype names to PowerPoint layout objects.
-- Validate configured layout names against LayoutMapper.
+- Load the approved Mint archetype baseline from config/archetype-baseline.json.
+- Support both the legacy top-level "archetypes" structure and the approved
+  grouped "groups" structure supplied by the project owner.
+- Resolve JSON contract archetype names to PowerPoint layout objects through
+  LayoutMapper.
 
 Important:
-- This module does not hardcode archetype-to-layout mappings.
-- This module does not search for similar layouts.
-- This module does not fall back to alternative layouts.
-- This module does not use slide layout indexes.
-- This module does not generate slides or fill placeholders.
+- This module does not create slides.
+- This module does not fill placeholders.
+- This module does not hardcode layout names.
+- This module does not use PowerPoint layout indexes.
 """
 
 from __future__ import annotations
 
 import json
 import logging
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Mapping, Optional, Protocol
@@ -53,6 +55,8 @@ class ArchetypeDefinition:
     archetype: str
     layout_name: str
     raw_definition: Mapping[str, Any] = field(repr=False)
+    aliases: tuple[str, ...] = field(default_factory=tuple)
+    group_name: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -60,33 +64,40 @@ class JsonArchetypeDefinitionLoader:
     """
     Loads archetype definitions from archetype-baseline.json.
 
-    The loader accepts common JSON shapes while keeping the configuration file as
-    the only source of truth:
-    - A list of archetype definition objects.
-    - A root object with an "archetypes" list.
-    - A root object with an "archetypes" object keyed by archetype name.
+    Supported input shapes:
+    1. Legacy list:
+       [ {"archetype": "cards3", "layout": "Content - Cards 3"} ]
 
-    Each definition must contain an archetype identifier and a layout name. The
-    loader does not invent or infer missing values.
+    2. Legacy object with archetypes list:
+       { "archetypes": [ ... ] }
+
+    3. Legacy object with archetypes object:
+       { "archetypes": { "cards3": {"layout": "Content - Cards 3"} } }
+
+    4. Approved grouped structure:
+       {
+         "version": "1.3",
+         "date": "2026-07-08",
+         "groups": {
+           "Content": [
+             {
+               "id": "B05",
+               "name": "Full-bleed image statement",
+               "layout": "Statement - Full Bleed"
+             }
+           ]
+         }
+       }
+
+    The grouped structure is flattened into the same normalized collection used
+    by the mapper. The original item metadata is preserved and the group name is
+    added as metadata under "group".
     """
 
     archetypes_key: str = "archetypes"
+    groups_key: str = "groups"
 
     def load(self, path: Path) -> list[Mapping[str, Any]]:
-        """
-        Load normalized archetype definitions from JSON.
-
-        Args:
-            path: Path to config/archetype-baseline.json.
-
-        Returns:
-            A list of archetype definition mappings.
-
-        Raises:
-            ArchetypeMappingException: If the file is missing, invalid, or does
-                not contain archetype definitions in a supported shape.
-        """
-
         if not path.exists():
             raise ArchetypeMappingException(f"Archetype baseline file was not found: {path}")
 
@@ -106,37 +117,82 @@ class JsonArchetypeDefinitionLoader:
         if isinstance(data, list):
             return self._ensure_mapping_list(data)
 
-        if isinstance(data, dict):
-            if self.archetypes_key not in data:
-                raise ArchetypeMappingException(
-                    "archetype-baseline.json must contain an 'archetypes' collection."
-                )
+        if not isinstance(data, Mapping):
+            raise ArchetypeMappingException(
+                "Unsupported archetype-baseline.json shape. Expected a list or object."
+            )
 
-            archetypes = data[self.archetypes_key]
+        if self.archetypes_key in data:
+            return self._normalize_legacy_archetypes(data[self.archetypes_key])
 
-            if isinstance(archetypes, list):
-                return self._ensure_mapping_list(archetypes)
-
-            if isinstance(archetypes, dict):
-                normalized: list[Mapping[str, Any]] = []
-                for archetype_name, definition in archetypes.items():
-                    if not isinstance(definition, dict):
-                        raise ArchetypeMappingException(
-                            f"Definition for archetype '{archetype_name}' must be an object."
-                        )
-                    merged = {"archetype": archetype_name, **definition}
-                    normalized.append(merged)
-                return normalized
+        if self.groups_key in data:
+            return self._normalize_grouped_archetypes(data[self.groups_key])
 
         raise ArchetypeMappingException(
-            "Unsupported archetype-baseline.json shape. Expected a list, an object with "
-            "an 'archetypes' list, or an object with an 'archetypes' mapping."
+            "archetype-baseline.json must contain either an 'archetypes' collection "
+            "or the approved 'groups' structure."
         )
+
+    def _normalize_legacy_archetypes(self, archetypes: Any) -> list[Mapping[str, Any]]:
+        if isinstance(archetypes, list):
+            return self._ensure_mapping_list(archetypes)
+
+        if isinstance(archetypes, Mapping):
+            normalized: list[Mapping[str, Any]] = []
+            for archetype_name, definition in archetypes.items():
+                if not isinstance(definition, Mapping):
+                    raise ArchetypeMappingException(
+                        f"Definition for archetype '{archetype_name}' must be an object."
+                    )
+                normalized.append({"archetype": archetype_name, **definition})
+            return normalized
+
+        raise ArchetypeMappingException("The 'archetypes' collection must be a list or object.")
+
+    def _normalize_grouped_archetypes(self, groups: Any) -> list[Mapping[str, Any]]:
+        if groups is None:
+            raise ArchetypeMappingException("The approved baseline is missing the 'groups' object.")
+
+        if not isinstance(groups, Mapping):
+            raise ArchetypeMappingException("The approved baseline 'groups' value must be an object.")
+
+        if not groups:
+            raise ArchetypeMappingException("The approved baseline 'groups' object is empty.")
+
+        normalized: list[Mapping[str, Any]] = []
+        empty_groups: list[str] = []
+
+        for group_name, group_items in groups.items():
+            if not isinstance(group_items, list):
+                raise ArchetypeMappingException(
+                    f"Group '{group_name}' must contain a list of archetype definitions."
+                )
+
+            if not group_items:
+                empty_groups.append(str(group_name))
+                continue
+
+            for index, item in enumerate(group_items):
+                if not isinstance(item, Mapping):
+                    raise ArchetypeMappingException(
+                        f"Archetype definition at groups.{group_name}[{index}] must be an object."
+                    )
+                normalized.append({"group": group_name, **item})
+
+        if empty_groups:
+            raise ArchetypeMappingException(
+                f"The following archetype groups are empty: {sorted(empty_groups)}"
+            )
+
+        if not normalized:
+            raise ArchetypeMappingException("No archetype definitions were found in the approved grouped baseline.")
+
+        return normalized
 
     def _ensure_mapping_list(self, values: list[Any]) -> list[Mapping[str, Any]]:
         definitions: list[Mapping[str, Any]] = []
         for index, value in enumerate(values):
-            if not isinstance(value, dict):
+            if not isinstance(value, Mapping):
                 raise ArchetypeMappingException(
                     f"Archetype definition at index {index} must be an object."
                 )
@@ -149,19 +205,12 @@ class ArchetypeMapper:
     """
     Resolves JSON contract archetypes into validated PowerPoint layout objects.
 
-    This service has a single responsibility: read configured archetype mappings
-    and return layouts through LayoutMapper. It remains independent of slide
-    generation, placeholder population, and any python-pptx slide operations.
+    The public API is unchanged:
+        mapper = ArchetypeMapper(layout_mapper)
+        layout = mapper.get_layout_for_archetype("cards3")
 
-    Args:
-        layout_mapper: Resolver that knows the loaded PowerPoint template and can
-            return layouts by exact name.
-        engine_config: Project configuration containing the base directory.
-        definition_loader: Loader for archetype-baseline.json.
-        baseline_path: Optional explicit path to archetype-baseline.json.
-        require_unique_layout_mappings: When True, more than one archetype cannot
-            point to the same layout name.
-        log: Logger used for diagnostics.
+    For approved grouped baselines, the mapper flattens all groups into one
+    lookup collection and preserves group metadata on each raw definition.
     """
 
     layout_mapper: LayoutResolver
@@ -171,15 +220,84 @@ class ArchetypeMapper:
     require_unique_layout_mappings: bool = False
     log: logging.Logger = field(default_factory=lambda: logger)
 
-    _definitions_by_archetype: dict[str, ArchetypeDefinition] = field(
-        default_factory=dict,
+    _definitions_by_archetype: dict[str, ArchetypeDefinition] = field(default_factory=dict, init=False, repr=False)
+    _definitions_by_alias: dict[str, ArchetypeDefinition] = field(default_factory=dict, init=False, repr=False)
+
+    # Contract aliases map friendly JSON contract archetype names to approved
+    # baseline IDs. This avoids hardcoding layout names while allowing the agent
+    # contract to keep simple names like "statement", "cover_dark", and "logo_wall".
+    # Layout names still come ONLY from config/archetype-baseline.json.
+    _contract_alias_to_baseline_id: dict[str, str] = field(
+        default_factory=lambda: {
+            # Openers
+            "cover": "A01",
+            "cover_brand": "A01",
+            "cover_dark": "A02",
+            "cover_dark_minimal": "A02",
+            "agenda": "A03",
+            "agenda_contents": "A03",
+            "section_divider": "A04",
+
+            # Content
+            "title_content": "B01",
+            "title_bullets": "B01",
+            "cards3": "B02",
+            "cards4": "B02",
+            "card_grid": "B02",
+            "cards_with_bullets": "B03",
+            "cards_with_bullet_lists": "B03",
+            "image_right": "B04",
+            "image_text_split": "B04",
+            "statement": "B05",
+            "full_bleed_statement": "B05",
+            "quote": "B06",
+            "testimonial": "B06",
+            "comparison": "B08",
+            "two_column_comparison": "B08",
+            "faq": "B09",
+            "qanda": "B09",
+            "thesis": "B10",
+
+            # Process and time
+            "process_flow": "C01",
+            "roadmap": "C02",
+            "timeline": "C02",
+
+            # Data
+            "data_table": "D01",
+            "table": "D01",
+            "chart": "D02",
+            "chart_takeaway": "D02",
+            "kpi": "D03",
+            "kpi_stats": "D03",
+            "matrix": "D05",
+            "matrix_2x2": "D05",
+
+            # People and proof
+            "team": "E01",
+            "meet_the_team": "E01",
+            "org_chart": "E02",
+            "logo_wall": "E03",
+            "case_study": "E04",
+
+            # Commercial
+            "pricing_stat": "F01",
+            "pricing_options_table": "F02",
+            "prerequisites_terms": "F03",
+
+            # Closers
+            "summary_cta": "G01",
+            "summary": "G01",
+            "closing": "G02",
+            "next_steps": "G02",
+            "thank_you": "G03",
+            "thank_you_contact": "G03",
+        },
         init=False,
         repr=False,
     )
 
     def __post_init__(self) -> None:
-        """Load and validate mapping configuration immediately."""
-
         path = self._resolve_baseline_path()
         self.log.info("Loading archetype baseline from: %s", path)
 
@@ -187,36 +305,14 @@ class ArchetypeMapper:
         definitions = self._parse_definitions(raw_definitions)
         self._validate_duplicate_archetypes(definitions)
         self._validate_duplicate_layout_mappings(definitions)
-        self._validate_layouts_exist(definitions)
 
-        self._definitions_by_archetype = {
-            definition.archetype: definition for definition in definitions
-        }
+        self._definitions_by_archetype = {definition.archetype: definition for definition in definitions}
+        self._definitions_by_alias = self._build_alias_index(definitions)
 
         self.log.info("Loaded %s archetype mappings.", len(self._definitions_by_archetype))
 
     def get_layout_for_archetype(self, archetype: str) -> Any:
-        """
-        Return the PowerPoint layout object configured for an archetype.
-
-        Args:
-            archetype: Archetype name from the Mint Deck Builder JSON contract.
-
-        Returns:
-            The matching PowerPoint layout object returned by LayoutMapper.
-
-        Raises:
-            ArchetypeMappingException: If the archetype is unknown or the
-                configured layout cannot be resolved.
-        """
-
-        if archetype not in self._definitions_by_archetype:
-            available = sorted(self._definitions_by_archetype.keys())
-            raise ArchetypeMappingException(
-                f"Unknown archetype '{archetype}'. Available archetypes: {available}"
-            )
-
-        definition = self._definitions_by_archetype[archetype]
+        definition = self._get_definition(archetype)
 
         try:
             return self.layout_mapper.get_layout(definition.layout_name)
@@ -227,25 +323,21 @@ class ArchetypeMapper:
             ) from exc
 
     def get_layout_name_for_archetype(self, archetype: str) -> str:
-        """
-        Return the configured layout name for an archetype without returning the layout object.
-
-        This is useful for diagnostics and tests. It does not perform any fallback
-        or similarity matching.
-        """
-
-        if archetype not in self._definitions_by_archetype:
-            available = sorted(self._definitions_by_archetype.keys())
-            raise ArchetypeMappingException(
-                f"Unknown archetype '{archetype}'. Available archetypes: {available}"
-            )
-
-        return self._definitions_by_archetype[archetype].layout_name
+        return self._get_definition(archetype).layout_name
 
     def available_archetypes(self) -> tuple[str, ...]:
-        """Return all configured archetype names sorted alphabetically."""
+        return tuple(sorted(self._definitions_by_alias.keys()))
 
-        return tuple(sorted(self._definitions_by_archetype.keys()))
+    def _get_definition(self, archetype: str) -> ArchetypeDefinition:
+        lookup_key = self._normalize_key(archetype)
+
+        if lookup_key not in self._definitions_by_alias:
+            available = sorted(self._definitions_by_alias.keys())
+            raise ArchetypeMappingException(
+                f"Unknown archetype '{archetype}'. Available archetypes and aliases: {available}"
+            )
+
+        return self._definitions_by_alias[lookup_key]
 
     def _resolve_baseline_path(self) -> Path:
         if self.baseline_path:
@@ -256,26 +348,72 @@ class ArchetypeMapper:
         definitions: list[ArchetypeDefinition] = []
 
         for index, raw_definition in enumerate(raw_definitions):
-            archetype = self._read_required_string(
-                raw_definition,
-                keys=("archetype", "name", "id"),
-                item_description=f"archetype definition at index {index}",
-            )
             layout_name = self._read_required_string(
                 raw_definition,
                 keys=("layout", "layout_name", "layoutName", "powerpoint_layout", "powerPointLayout"),
-                item_description=f"archetype '{archetype}'",
+                item_description=f"archetype definition at index {index}",
             )
+
+            archetype = self._read_archetype_identifier(raw_definition, index)
+            aliases = self._build_definition_aliases(raw_definition, archetype)
 
             definitions.append(
                 ArchetypeDefinition(
                     archetype=archetype,
                     layout_name=layout_name,
                     raw_definition=raw_definition,
+                    aliases=aliases,
+                    group_name=self._optional_string(raw_definition, "group"),
                 )
             )
 
         return definitions
+
+    def _read_archetype_identifier(self, definition: Mapping[str, Any], index: int) -> str:
+        for key in ("archetype", "contract_archetype", "contractArchetype", "id", "name"):
+            value = definition.get(key)
+            if isinstance(value, str) and value.strip():
+                return self._normalize_key(value)
+
+        raise ArchetypeMappingException(
+            f"Archetype definition at index {index} is missing archetype/id/name metadata."
+        )
+
+    def _build_definition_aliases(self, definition: Mapping[str, Any], archetype: str) -> tuple[str, ...]:
+        aliases: set[str] = {archetype}
+
+        for key in ("archetype", "contract_archetype", "contractArchetype", "id", "name"):
+            value = definition.get(key)
+            if isinstance(value, str) and value.strip():
+                aliases.add(self._normalize_key(value))
+
+        id_value = definition.get("id")
+        if isinstance(id_value, str):
+            normalized_id = self._normalize_key(id_value)
+            for contract_alias, baseline_id in self._contract_alias_to_baseline_id.items():
+                if self._normalize_key(baseline_id) == normalized_id:
+                    aliases.add(self._normalize_key(contract_alias))
+
+        return tuple(sorted(aliases))
+
+    def _build_alias_index(self, definitions: list[ArchetypeDefinition]) -> dict[str, ArchetypeDefinition]:
+        alias_index: dict[str, ArchetypeDefinition] = {}
+        duplicate_aliases: dict[str, list[str]] = {}
+
+        for definition in definitions:
+            for alias in definition.aliases:
+                existing = alias_index.get(alias)
+                if existing is not None and existing.archetype != definition.archetype:
+                    duplicate_aliases.setdefault(alias, [existing.archetype]).append(definition.archetype)
+                    continue
+                alias_index[alias] = definition
+
+        if duplicate_aliases:
+            raise ArchetypeMappingException(
+                f"Duplicate archetype aliases detected: {duplicate_aliases}"
+            )
+
+        return alias_index
 
     def _read_required_string(
         self,
@@ -291,6 +429,12 @@ class ArchetypeMapper:
         raise ArchetypeMappingException(
             f"Missing required string field in {item_description}. Expected one of: {list(keys)}"
         )
+
+    def _optional_string(self, definition: Mapping[str, Any], key: str) -> Optional[str]:
+        value = definition.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+        return None
 
     def _validate_duplicate_archetypes(self, definitions: list[ArchetypeDefinition]) -> None:
         seen: set[str] = set()
@@ -315,27 +459,21 @@ class ArchetypeMapper:
 
         for definition in definitions:
             if definition.layout_name in seen:
-                duplicates.setdefault(definition.layout_name, [seen[definition.layout_name]]).append(
-                    definition.archetype
-                )
+                duplicates.setdefault(definition.layout_name, [seen[definition.layout_name]]).append(definition.archetype)
             else:
                 seen[definition.layout_name] = definition.archetype
 
         if duplicates:
             duplicate_summary = {
-                layout_name: sorted(archetypes)
-                for layout_name, archetypes in duplicates.items()
+                layout_name: sorted(archetypes) for layout_name, archetypes in duplicates.items()
             }
             raise ArchetypeMappingException(
                 f"Duplicate layout mappings detected where uniqueness is required: {duplicate_summary}"
             )
 
-    def _validate_layouts_exist(self, definitions: list[ArchetypeDefinition]) -> None:
-        for definition in definitions:
-            try:
-                self.layout_mapper.get_layout(definition.layout_name)
-            except Exception as exc:
-                raise ArchetypeMappingException(
-                    f"Configured layout '{definition.layout_name}' for archetype "
-                    f"'{definition.archetype}' could not be found in the loaded template."
-                ) from exc
+    def _normalize_key(self, value: str) -> str:
+        normalized = value.strip().lower()
+        normalized = normalized.replace("&", "and")
+        normalized = re.sub(r"[^a-z0-9]+", "_", normalized)
+        normalized = re.sub(r"_+", "_", normalized)
+        return normalized.strip("_")

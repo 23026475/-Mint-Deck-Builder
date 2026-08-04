@@ -142,6 +142,42 @@ class LayoutMapper:
         self.log.info("Loaded %s slide layouts from template.", len(layouts_by_name))
         self.log.debug("Available slide layouts: %s", sorted(layouts_by_name.keys()))
 
+    def load_from_presentation(
+        self,
+        presentation: PresentationObject,
+        template_path: Optional[str | Path] = None,
+    ) -> None:
+        """
+        Load layout mappings from an already-open python-pptx Presentation object.
+
+        This is required when another builder is going to add slides to that same
+        Presentation instance. SlideLayout objects must come from the same
+        Presentation object that receives the new slides, otherwise PowerPoint
+        can repair or remove content when opening the generated file.
+
+        Args:
+            presentation: Already-loaded python-pptx Presentation object.
+            template_path: Optional path used only for diagnostics/logging.
+        """
+
+        self.log.info("Loading slide layouts from existing presentation instance.")
+
+        layouts_by_name = self._enumerate_layouts(presentation)
+
+        self._presentation = presentation
+        self._layouts_by_name = layouts_by_name
+
+        if template_path is not None:
+            self.template_path = Path(template_path).expanduser().resolve()
+
+        self.log.info(
+            "Loaded %s slide layouts from existing presentation.",
+            len(layouts_by_name),
+        )
+        self.log.debug(
+            "Available slide layouts: %s",
+            sorted(layouts_by_name.keys()),
+        )
 
     def get_layout(self, name: str) -> SlideLayout:
         """
