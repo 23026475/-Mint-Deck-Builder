@@ -10,7 +10,7 @@ Milestone scope:
 - Save the generated PPTX to data/output.
 
 Important:
-- This module does not populate placeholders.
+- This module delegates placeholder population to SlideBuilder/PlaceholderBuilder.
 - This module does not perform QA validation.
 - This module does not implement density validation.
 - This module does not hardcode layouts or use layout indexes.
@@ -27,12 +27,17 @@ from typing import Any, Mapping, Optional, Protocol
 
 from presentation_engine.config import EngineConfig, config
 from presentation_engine.builders.slide_builder import SlideBuilder, SlideBuilderException
+from presentation_engine.builders.placeholder_builder import PlaceholderBuilder
 from presentation_engine.services.archetype_mapper import ArchetypeMapper, ArchetypeMappingException
 from presentation_engine.services.layout_mapper import LayoutMapper, TemplateLoadError
 from presentation_engine.services.potx_converter import PotxConverter, PotxConversionError
 from presentation_engine.services.template_retrieval_service import (
     TemplateRetrievalError,
     TemplateRetrievalService,
+)
+from presentation_engine.services.pptx_package_cleaner import (
+    PptxPackageCleanerException,
+    remove_duplicate_zip_entries,
 )
 
 
@@ -83,6 +88,13 @@ class OutputNameProvider(Protocol):
 
     def get_output_path(self, contract: Mapping[str, Any], output_dir: Path) -> Path:
         """Return the full output PPTX path for the generated deck."""
+
+
+class PlaceholderPopulator(Protocol):
+    """Interface for populating placeholders on an already-created slide."""
+
+    def populate(self, slide: Any, slide_definition: Mapping[str, Any]) -> None:
+        """Populate placeholders on the supplied slide from the JSON slide definition."""
 
 
 @dataclass(frozen=True)
@@ -196,9 +208,8 @@ class DeckBuilder:
     Orchestrates the first milestone deck generation pipeline.
 
     The builder coordinates existing services without duplicating their logic:
-    TemplateRetrievalService, PotxConverter, LayoutMapper, ArchetypeMapper, and
-    SlideBuilder. It deletes template sample slides, creates milestone slides,
-    and saves the output PPTX.
+    TemplateRetrievalService, PotxConverter, LayoutMapper, ArchetypeMapper,
+    SlideBuilder, and PlaceholderBuilder.
     """
 
     engine_config: EngineConfig = field(default_factory=lambda: config)
@@ -208,6 +219,7 @@ class DeckBuilder:
     sample_slide_remover: SampleSlideRemover = field(default_factory=PythonPptxSampleSlideRemover)
     contract_loader: ContractLoader = field(default_factory=JsonContractLoader)
     output_name_provider: OutputNameProvider = field(default_factory=DefaultOutputNameProvider)
+    placeholder_builder: PlaceholderPopulator = field(default_factory=PlaceholderBuilder)
     log: logging.Logger = field(default_factory=lambda: logger)
 
     def build_from_contract_file(self, contract_path: Optional[str | Path] = None) -> DeckBuildResult:
@@ -220,9 +232,6 @@ class DeckBuilder:
 
         Returns:
             DeckBuildResult containing key paths and generated slide count.
-
-        Raises:
-            DeckBuilderException: If any orchestration step fails.
         """
 
         resolved_contract_path = self._resolve_contract_path(contract_path)
@@ -251,12 +260,8 @@ class DeckBuilder:
             self.log.info("Ensuring converted PPTX exists.")
             converted_pptx_path = self._ensure_converted_template(potx_path)
 
-            self.log.info("Loading layout mapper for converted template.")
-            layout_mapper = LayoutMapper(engine_config=self.engine_config)
-            layout_mapper.load(converted_pptx_path)
-
-            self.log.info("Loading archetype mapper from baseline configuration.")
-            archetype_mapper = ArchetypeMapper(layout_mapper=layout_mapper, engine_config=self.engine_config)
+            self.log.info("Normalizing converted PPTX package to remove duplicate ZIP entries.")
+            remove_duplicate_zip_entries(converted_pptx_path, converted_pptx_path)
 
             self.log.info("Loading converted presentation for deck generation.")
             presentation = self.presentation_loader.load(converted_pptx_path)
@@ -264,11 +269,28 @@ class DeckBuilder:
             self.log.info("Removing all sample slides from template.")
             self.sample_slide_remover.remove_all(presentation)
 
+            self.log.info("Loading layout mapper from the active presentation instance.")
+            layout_mapper = LayoutMapper(engine_config=self.engine_config)
+            layout_mapper.load_from_presentation(presentation, converted_pptx_path)
+
+            self.log.info("Loading archetype mapper from baseline configuration.")
+            archetype_mapper = ArchetypeMapper(
+                layout_mapper=layout_mapper,
+                engine_config=self.engine_config,
+            )
+
             self.log.info("Building milestone slides.")
-            slide_builder = SlideBuilder(archetype_mapper=archetype_mapper, engine_config=self.engine_config)
+            slide_builder = SlideBuilder(
+                archetype_mapper=archetype_mapper,
+                engine_config=self.engine_config,
+                placeholder_builder=self.placeholder_builder,
+            )
+
             created_slides = []
             for slide_definition in self._get_slide_definitions(contract):
-                created_slides.append(slide_builder.build_slide(presentation, slide_definition))
+                created_slides.append(
+                    slide_builder.build_slide(presentation, slide_definition)
+                )
 
             output_path = self.output_name_provider.get_output_path(
                 contract,
@@ -276,29 +298,48 @@ class DeckBuilder:
             )
             output_path.parent.mkdir(parents=True, exist_ok=True)
 
-            self.log.info("Saving generated presentation: %s", output_path)
-            presentation.save(str(output_path))
+            temporary_output_path = output_path.with_suffix(".tmp.pptx")
+
+            if temporary_output_path.exists():
+                temporary_output_path.unlink()
+
+            if output_path.exists():
+                output_path.unlink()
+
+            self.log.info("Saving generated presentation to temporary PPTX: %s", temporary_output_path)
+            presentation.save(str(temporary_output_path))
+
+            self.log.info("Writing clean final PPTX package: %s", output_path)
+            remove_duplicate_zip_entries(temporary_output_path, output_path)
+
+            if temporary_output_path.exists():
+                temporary_output_path.unlink()
 
             self.log.info("Deck generation completed with %s slides.", len(created_slides))
+
             return DeckBuildResult(
                 potx_path=potx_path,
                 converted_pptx_path=converted_pptx_path,
                 output_pptx_path=output_path,
                 slide_count=len(created_slides),
             )
+
         except (
             TemplateRetrievalError,
             PotxConversionError,
             TemplateLoadError,
             ArchetypeMappingException,
             SlideBuilderException,
+            PptxPackageCleanerException,
             DeckBuilderException,
         ):
             self.log.exception("Deck generation failed.")
             raise
         except Exception as exc:
             self.log.exception("Unexpected deck generation failure.")
-            raise DeckBuilderException("Unexpected failure while generating the milestone deck.") from exc
+            raise DeckBuilderException(
+                "Unexpected failure while generating the milestone deck."
+            ) from exc
 
     def _ensure_converted_template(self, potx_path: Path) -> Path:
         """Convert POTX to PPTX when the converted file is missing or stale."""
