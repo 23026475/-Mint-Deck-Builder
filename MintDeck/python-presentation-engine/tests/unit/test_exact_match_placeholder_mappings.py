@@ -101,7 +101,7 @@ class ExactMatchPlaceholderMappingTests(unittest.TestCase):
         self.assertEqual(slide.by_idx(20).text, "Value is visible.")
         self.assertEqual(slide.by_idx(21).text, "Operations Leader")
         self.assertNotIn(22, slide.indexes())
-        self.assertNotIn(30, slide.indexes())
+        self.assertIn(30, slide.indexes())
 
     def test_comparison_mapping(self):
         slide = FakeSlide([0, 11, 20, 21, 22, 23, 40])
