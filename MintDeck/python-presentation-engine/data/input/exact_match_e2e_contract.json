@@ -18,9 +18,9 @@
     {
       "archetype": "cover_dark",
       "fields": {
-        "title": "Exact-match archetypes are now ready for validation",
-        "subtitle": "Baseline-aligned implementation check",
-        "abstract": "This section validates the currently supported FY27 exact-match layouts.",
+        "title": "Exact-match validation is ready",
+        "subtitle": "Baseline and template alignment",
+        "abstract": "Supported layouts are generating with populated text.",
         "kicker": "VALIDATION"
       }
     },
