@@ -1,0 +1,82 @@
+{
+  "deck": {
+    "client": "Contoso Manufacturing",
+    "title": "Image Handler E2E Validation",
+    "mode": "STAGE"
+  },
+  "slides": [
+    {
+      "archetype": "image_right",
+      "action_title": "Image placement validates local assets",
+      "fields": {
+        "kicker": "IMAGE VALIDATION",
+        "body": "This slide validates one local image inserted into an existing picture placeholder.",
+        "picture": "FY27 Ai Image (1).jpg"
+      }
+    },
+    {
+      "archetype": "image_right",
+      "action_title": "Second image validates layout reuse",
+      "fields": {
+        "kicker": "LETTERBOXING",
+        "body": "This slide validates a second image using the same image-right layout.",
+        "picture": "FY27 Ai Image (10).jpg"
+      }
+    },
+    {
+      "archetype": "quote",
+      "fields": {
+        "quote": "Image support is validated through the media pipeline.",
+        "attribution": "Project Validation",
+        "role": "Image E2E",
+        "headshot": "FY27 People Collaborating & Corporate (69).JPG"
+      }
+    },
+    {
+      "archetype": "team",
+      "action_title": "Team image placeholders are populated",
+      "fields": {
+        "members": [
+          {
+            "name": "Person 1",
+            "role": "Lead",
+            "picture": "FY27 General Tech & IT (37).jpg"
+          },
+          {
+            "name": "Person 2",
+            "role": "Engineer",
+            "picture": "FY27 People Collaborating & Corporate (70).jpg"
+          },
+          {
+            "name": "Person 3",
+            "role": "Reviewer",
+            "picture": "FY27 People Collaborating & Corporate (76).jpg"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "logo_wall",
+      "action_title": "Logo wall validates multiple image placeholders",
+      "fields": {
+        "kicker": "MULTI-IMAGE",
+        "caption": "Multiple local images are resolved and inserted through ImageCatalog.",
+        "logos": [
+          "FY27 Ai Image (15).jpg",
+          "FY27 Ai Image (16).jpg",
+          "FY27 Ai Image (17).jpg",
+          "FY27 Ai Image (18).jpg"
+        ]
+      }
+    },
+    {
+      "archetype": "image_right",
+      "action_title": "Repeated image validates catalog caching",
+      "fields": {
+        "kicker": "CACHE VALIDATION",
+        "body": "This slide intentionally reuses an earlier image to validate repeated lookup behaviour.",
+        "picture": "FY27 Ai Image (1).jpg"
+      }
+    }
+  ]
+}

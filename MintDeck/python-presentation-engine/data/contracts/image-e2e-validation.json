@@ -1,0 +1,58 @@
+{
+  "title": "Image Handler E2E Validation",
+  "slides": [
+    {
+      "archetype": "image_right",
+      "action_title": "Image Right Validation",
+      "fields": {
+        "body": "Local image insertion with letterboxing.",
+        "picture": "hero.jpg"
+      }
+    },
+    {
+      "archetype": "quote",
+      "fields": {
+        "quote": "Image support is now validated.",
+        "attribution": "Project Team",
+        "role": "Validation",
+        "headshot": "headshot.png"
+      }
+    },
+    {
+      "archetype": "team",
+      "action_title": "Team Image Validation",
+      "fields": {
+        "members": [
+          {
+            "name": "Person 1",
+            "role": "Lead",
+            "picture": "member1.jpg"
+          },
+          {
+            "name": "Person 2",
+            "role": "Engineer",
+            "picture": "member2.jpg"
+          },
+          {
+            "name": "Person 3",
+            "role": "Reviewer",
+            "picture": "member3.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "logo_wall",
+      "action_title": "Logo Wall Validation",
+      "fields": {
+        "caption": "Local logo placeholders populated from the image catalog.",
+        "logos": [
+          "logo1.png",
+          "logo2.png",
+          "logo3.png",
+          "logo4.png"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "title": "Image Handler E2E Validation",
+  "description": "Validation contract dedicated to ImageHandler local image insertion, placeholder mapping, letterboxing and cache behaviour.",
+  "slides": [
+    {
+      "archetype": "image_right",
+      "action_title": "Landscape image insertion preserves the template.",
+      "fields": {
+        "kicker": "IMAGE HANDLER",
+        "body": "This slide validates a single local image inserted into the image-right picture placeholder while preserving layout geometry.",
+        "picture": "FY27 Ai Image (1).jpg"
+      },
+      "validation_notes": {
+        "purpose": "single landscape image; letterboxing and placeholder geometry check",
+        "selected_image": {
+          "filename": "FY27 Ai Image (1).jpg",
+          "category": "ai",
+          "orientation": "landscape",
+          "width": 7373,
+          "height": 4147,
+          "tags": [
+            "admin",
+            "ai brain",
+            "algorithms",
+            "artificial intelligence",
+            "autonomous",
+            "big data",
+            "brain",
+            "cloud computing"
+          ]
+        }
+      }
+    },
+    {
+      "archetype": "quote",
+      "fields": {
+        "quote": "Local image support is validated through the media orchestration layer.",
+        "attribution": "Presentation Engine Validation",
+        "role": "Image pipeline regression test",
+        "headshot": "FY27 Public Sector (11).jpg"
+      },
+      "validation_notes": {
+        "purpose": "quote headshot image insertion",
+        "selected_image": {
+          "filename": "FY27 Public Sector (11).jpg",
+          "category": "people",
+          "orientation": "portrait",
+          "width": 4912,
+          "height": 7360,
+          "tags": [
+            "african",
+            "boss",
+            "business people",
+            "businessman",
+            "career",
+            "circle",
+            "collaboration",
+            "colleagues"
+          ]
+        }
+      }
+    },
+    {
+      "archetype": "team",
+      "action_title": "Multiple team images validate repeated placeholder mapping.",
+      "fields": {
+        "members": [
+          {
+            "name": "Validation Member 1",
+            "role": "Image catalog resolution",
+            "picture": "FY27 General Tech & IT (37).jpg"
+          },
+          {
+            "name": "Validation Member 2",
+            "role": "Placeholder mapping",
+            "picture": "FY27 Public Sector (36).jpg"
+          },
+          {
+            "name": "Validation Member 3",
+            "role": "Letterboxing review",
+            "picture": "FY27 Education (10).jpg"
+          }
+        ]
+      },
+      "validation_notes": {
+        "purpose": "three images on one slide; member_picture occurrence mapping",
+        "selected_images": [
+          {
+            "filename": "FY27 General Tech & IT (37).jpg",
+            "category": "people",
+            "orientation": "portrait",
+            "width": 3293,
+            "height": 4935,
+            "tags": [
+              "businesspeople",
+              "businessperson",
+              "career",
+              "confident",
+              "copyspace",
+              "corporate",
+              "creative",
+              "design"
+            ]
+          },
+          {
+            "filename": "FY27 Public Sector (36).jpg",
+            "category": "people",
+            "orientation": "portrait",
+            "width": 4386,
+            "height": 5097,
+            "tags": [
+              "above",
+              "businesspeople",
+              "businessperson",
+              "care",
+              "career",
+              "collaboration",
+              "colleagues",
+              "commitment"
+            ]
+          },
+          {
+            "filename": "FY27 Education (10).jpg",
+            "category": "people",
+            "orientation": "landscape",
+            "width": 8192,
+            "height": 5464,
+            "tags": [
+              "asian",
+              "black",
+              "business collaboration",
+              "business meeting",
+              "business team",
+              "collaborates",
+              "collaboration",
+              "collaborative workspace"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "logo_wall",
+      "action_title": "Logo wall validates multiple picture placeholders.",
+      "fields": {
+        "kicker": "MEDIA REGRESSION",
+        "caption": "This slide validates multiple mapped media placeholders and mixed aspect ratios.",
+        "logos": [
+          "FY27 People Collaborating & Corporate (77).jpg",
+          "FY27 Data & Security (37).jpg",
+          "FY27 General Tech & IT (38).jpg",
+          "FY27 Healthcare (9).jpg"
+        ]
+      },
+      "validation_notes": {
+        "purpose": "multiple images on one slide; logo occurrence mapping",
+        "selected_images": [
+          {
+            "filename": "FY27 People Collaborating & Corporate (77).jpg",
+            "category": "people",
+            "orientation": "square",
+            "width": 4031,
+            "height": 4031,
+            "tags": [
+              "ambition",
+              "ambitious",
+              "angle",
+              "businesspeople",
+              "businessperson",
+              "career",
+              "collaboration",
+              "copyspace"
+            ]
+          },
+          {
+            "filename": "FY27 Data & Security (37).jpg",
+            "category": "data-security",
+            "orientation": "square",
+            "width": 4000,
+            "height": 4000,
+            "tags": [
+              "application",
+              "businessman",
+              "cell",
+              "cloud",
+              "communication",
+              "computing",
+              "concept",
+              "connection"
+            ]
+          },
+          {
+            "filename": "FY27 General Tech & IT (38).jpg",
+            "category": "general-tech-it",
+            "orientation": "landscape",
+            "width": 4500,
+            "height": 3500,
+            "tags": []
+          },
+          {
+            "filename": "FY27 Healthcare (9).jpg",
+            "category": "uncategorized",
+            "orientation": "portrait",
+            "width": 4672,
+            "height": 7008,
+            "tags": [
+              "appointment",
+              "care",
+              "caregiver",
+              "clinic",
+              "closeup",
+              "comfort",
+              "comforting",
+              "concept"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "image_right",
+      "action_title": "Repeated image validates ImageCatalog cache behaviour.",
+      "fields": {
+        "kicker": "CACHE CHECK",
+        "body": "This slide intentionally reuses the first image to confirm repeated image references resolve consistently through the catalog cache.",
+        "picture": "FY27 Ai Image (1).jpg"
+      },
+      "validation_notes": {
+        "purpose": "repeated image usage for cache validation",
+        "selected_image": {
+          "filename": "FY27 Ai Image (1).jpg",
+          "category": "ai",
+          "orientation": "landscape",
+          "width": 7373,
+          "height": 4147,
+          "tags": [
+            "admin",
+            "ai brain",
+            "algorithms",
+            "artificial intelligence",
+            "autonomous",
+            "big data",
+            "brain",
+            "cloud computing"
+          ]
+        }
+      }
+    }
+  ]
+}
