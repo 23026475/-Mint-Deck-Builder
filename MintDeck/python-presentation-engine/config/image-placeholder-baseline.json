@@ -1,0 +1,27 @@
+{
+  "image_right": {
+    "picture": 20
+  },
+  "quote": {
+    "headshot": 30
+  },
+  "team": {
+    "member_picture": [
+      20,
+      21,
+      22
+    ]
+  },
+  "logo_wall": {
+    "logo": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27
+    ]
+  }
+}

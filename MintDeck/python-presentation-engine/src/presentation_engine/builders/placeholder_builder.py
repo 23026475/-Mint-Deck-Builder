@@ -28,6 +28,8 @@ from pptx.util import Inches, Pt
 
 from presentation_engine.config import EngineConfig, config
 
+from presentation_engine.handlers.media_handler import MediaHandler
+
 
 logger = logging.getLogger(__name__)
 
@@ -345,25 +347,8 @@ class PlaceholderBuilder:
         return filled_idx
 
     def _prepare_text_for_rendering(self, archetype: str, definition: PlaceholderDefinition, text: str) -> str:
-        """
-        Prepare valid contract text for safer rendering inside fixed template placeholders.
-
-        This preserves the JSON contract and validation rules. It only inserts line
-        breaks where the layout benefits from explicit wrapping.
-        """
-
-        normalized = " ".join((text or "").split())
-
-        # Cover – Dark already has a strict 45-character title budget.
-        # Forced line breaks caused the second title line to overlap other text.
-        # Keep it as one valid line and handle fit through the placeholder frame.
-        if archetype == "cover_dark" and definition.name == "title":
-            return normalized
-
-        # CTA is a narrow call-to-action area, so keep a controlled word-boundary wrap.
-        if archetype == "summary_cta" and definition.name == "cta":
-            return self._wrap_text_at_word_boundary(normalized, max_line_length=26)
-
+        # Preserve contract text and template wrapping behavior.
+        # Do not insert manual line breaks or alter rendering behavior.
         return text
 
     def _wrap_text_at_word_boundary(self, text: str, max_line_length: int) -> str:
@@ -397,25 +382,19 @@ class PlaceholderBuilder:
 
         if placeholder is None:
             if definition.required:
-                raise PlaceholderBuilderException(
-                    f"Required placeholder idx {definition.idx} was not found on the slide."
-                )
-            raise PlaceholderBuilderException(
-                f"Optional field supplied but placeholder idx {definition.idx} was not found."
-            )
+                raise PlaceholderBuilderException(f"Required placeholder idx {definition.idx} was not found on the slide.")
+            raise PlaceholderBuilderException(f"Optional field supplied but placeholder idx {definition.idx} was not found.")
 
         if not getattr(placeholder, "has_text_frame", True):
-            raise PlaceholderBuilderException(
-                f"Placeholder idx {definition.idx} exists but is not text-capable."
-            )
+            raise PlaceholderBuilderException(f"Placeholder idx {definition.idx} exists but is not text-capable.")
 
+        text_frame_state = self._capture_text_frame_properties(placeholder)
         placeholder.text = value
+        self._restore_text_frame_properties(placeholder, text_frame_state)
         self._apply_text_fit(archetype, definition, placeholder)
 
         filled_idx.add(definition.idx)
-        report["populated"].append(
-            {"idx": definition.idx, "name": definition.name, "source": definition.source}
-        )
+        report["populated"].append({"idx": definition.idx, "name": definition.name, "source": definition.source})
 
     def _apply_text_fit(
         self,
@@ -423,56 +402,73 @@ class PlaceholderBuilder:
         definition: PlaceholderDefinition,
         placeholder: Any,
     ) -> None:
-        """
-        Make generated-slide text placeholders safer for valid content.
+        # Preserve template geometry and text-frame settings.
+        # This method intentionally performs no changes.
+        return
 
-        This method only applies PowerPoint text-frame adjustments when running
-        against real python-pptx placeholders. Unit-test fake placeholders do not
-        expose text_frame, width or height, so this method safely no-ops for them.
+    def _capture_text_frame_properties(self, placeholder: Any) -> dict[str, Any]:
+        if not hasattr(placeholder, "text_frame"):
+            return {}
+        if not getattr(placeholder, "has_text_frame", False):
+            return {}
 
-        This does not:
-        - modify the JSON contract
-        - weaken validation rules
-        - change template fonts, colours, theme or placeholder positions
-        - create new text boxes
-        """
+        text_frame = placeholder.text_frame
+        paragraph_states = []
+        for paragraph in list(getattr(text_frame, "paragraphs", []) or []):
+            font = getattr(paragraph, "font", None)
+            paragraph_states.append({
+                "alignment": getattr(paragraph, "alignment", None),
+                "level": getattr(paragraph, "level", None),
+                "space_before": getattr(paragraph, "space_before", None),
+                "space_after": getattr(paragraph, "space_after", None),
+                "line_spacing": getattr(paragraph, "line_spacing", None),
+                "font_size": getattr(font, "size", None) if font is not None else None,
+            })
 
-        # Unit-test fake placeholders do not have a python-pptx text_frame.
-        # In that case, text population has already happened, so just return.
+        return {
+            "word_wrap": getattr(text_frame, "word_wrap", None),
+            "auto_size": getattr(text_frame, "auto_size", None),
+            "vertical_anchor": getattr(text_frame, "vertical_anchor", None),
+            "margin_left": getattr(text_frame, "margin_left", None),
+            "margin_right": getattr(text_frame, "margin_right", None),
+            "margin_top": getattr(text_frame, "margin_top", None),
+            "margin_bottom": getattr(text_frame, "margin_bottom", None),
+            "paragraphs": paragraph_states,
+        }
+
+    def _restore_text_frame_properties(self, placeholder: Any, state: dict[str, Any]) -> None:
+        if not state:
+            return
         if not hasattr(placeholder, "text_frame"):
             return
-
         if not getattr(placeholder, "has_text_frame", False):
             return
 
         text_frame = placeholder.text_frame
-        text_frame.word_wrap = True
+        for name in ("word_wrap", "auto_size", "vertical_anchor", "margin_left", "margin_right", "margin_top", "margin_bottom"):
+            try:
+                setattr(text_frame, name, state.get(name))
+            except Exception:
+                pass
 
-        # Keep internal margins tight so valid text can use the available box.
-        try:
-            text_frame.margin_left = Pt(0)
-            text_frame.margin_right = Pt(0)
-            text_frame.margin_top = Pt(0)
-            text_frame.margin_bottom = Pt(0)
-        except Exception:
-            # Some placeholder-like objects may not support margin assignment.
+        paragraph_states = state.get("paragraphs") or []
+        paragraphs = list(getattr(text_frame, "paragraphs", []) or [])
+        if not paragraphs or not paragraph_states:
             return
 
-        if archetype == "cover_dark" and definition.name == "title":
-            # Valid Cover Dark titles should remain one logical contract value.
-            # Increase generated-slide placeholder height only when possible.
-            if hasattr(placeholder, "height"):
-                placeholder.height = max(placeholder.height, Inches(0.9))
-            return
-
-        if archetype == "summary_cta" and definition.name == "cta":
-            # CTA background can visually fit the text, but the text frame can be
-            # too narrow/shallow. Adjust the generated slide placeholder only.
-            if hasattr(placeholder, "width"):
-                placeholder.width = max(placeholder.width, Inches(3.3))
-            if hasattr(placeholder, "height"):
-                placeholder.height = max(placeholder.height, Inches(0.75))
-            return
+        template_paragraph = paragraph_states[0]
+        for paragraph in paragraphs:
+            for name in ("alignment", "level", "space_before", "space_after", "line_spacing"):
+                try:
+                    setattr(paragraph, name, template_paragraph.get(name))
+                except Exception:
+                    pass
+            font_size = template_paragraph.get("font_size")
+            if font_size is not None:
+                try:
+                    paragraph.font.size = font_size
+                except Exception:
+                    pass
 
     def _cleanup_after_population(self, slide: Any, filled_idx: set[int], definitions: list[PlaceholderDefinition], report: dict[str, Any]) -> None:
         media_idx = {definition.idx for definition in definitions if definition.is_media}

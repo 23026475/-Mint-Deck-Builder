@@ -21,6 +21,7 @@ from presentation_engine.builders.placeholder_builder import (
     PlaceholderBuilderException,
     SUPPORTED_ARCHETYPES,
 )
+from presentation_engine.handlers.media_handler import MediaHandler
 
 
 logger = logging.getLogger(__name__)
@@ -39,6 +40,9 @@ class PlaceholderPopulator(Protocol):
     def populate(self, slide: Any, slide_definition: Mapping[str, Any]) -> None:
         """Populate placeholders on the supplied slide."""
 
+class MediaProcessor(Protocol):
+    def process(self, slide: Any, slide_definition: Mapping[str, Any]) -> list[dict[str, Any]]:
+        """Process media on the supplied slide."""
 
 class SlideCollection(Protocol):
     def add_slide(self, slide_layout: Any) -> Any:
@@ -53,6 +57,9 @@ class PresentationFactory(Protocol):
     def create_from_template(self, template_path: Path) -> PresentationLike:
         """Load and return a presentation from the converted template."""
 
+class MediaProcessor(Protocol):
+    def process(self, slide: Any, slide_definition: Mapping[str, Any]) -> list[dict[str, Any]]:
+        """Process media on the supplied slide."""
 
 @dataclass(frozen=True)
 class PythonPptxPresentationFactory:
@@ -78,6 +85,7 @@ class SlideBuilder:
     engine_config: EngineConfig = field(default_factory=lambda: config)
     presentation_factory: PresentationFactory = field(default_factory=PythonPptxPresentationFactory)
     placeholder_builder: PlaceholderPopulator = field(default_factory=PlaceholderBuilder)
+    media_handler: MediaProcessor = field(default_factory=MediaHandler)
     supported_archetypes: frozenset[str] = SUPPORTED_ARCHETYPES
     log: logging.Logger = field(default_factory=lambda: logger)
 
@@ -104,6 +112,7 @@ class SlideBuilder:
 
         try:
             self.placeholder_builder.populate(slide, slide_definition)
+            self.media_handler.process(slide, slide_definition)
         except PlaceholderBuilderException as exc:
             raise SlideBuilderException(f"Failed to populate placeholders for archetype '{archetype}'.") from exc
 
