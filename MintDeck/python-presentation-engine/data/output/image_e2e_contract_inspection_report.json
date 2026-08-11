@@ -1,0 +1,450 @@
+{
+  "contract_path": "data\\input\\image_e2e_validation_contract.json",
+  "image_directory": "data\\assets\\images",
+  "total_image_references": 11,
+  "unique_image_count": 10,
+  "unique_images": [
+    "FY27 Ai Image (1).jpg",
+    "FY27 Ai Image (10).jpg",
+    "FY27 Ai Image (15).jpg",
+    "FY27 Ai Image (16).jpg",
+    "FY27 Ai Image (17).jpg",
+    "FY27 Ai Image (18).jpg",
+    "FY27 General Tech & IT (37).jpg",
+    "FY27 People Collaborating & Corporate (69).JPG",
+    "FY27 People Collaborating & Corporate (70).jpg",
+    "FY27 People Collaborating & Corporate (76).jpg"
+  ],
+  "coverage_is_adequate_8_to_10_real_images": true,
+  "fake_or_sample_filenames": [],
+  "missing_images": [],
+  "unsupported_images": [],
+  "unreadable_images": [],
+  "role_inappropriate_images": [],
+  "images": [
+    {
+      "slide_number": 1,
+      "archetype": "image_right",
+      "field": "picture",
+      "filename": "FY27 Ai Image (1).jpg",
+      "expected_role": "image_right",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 Ai Image (1).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "ai",
+        "orientation": "landscape",
+        "width": 7373,
+        "height": 4147,
+        "tags": [
+          "admin",
+          "ai brain",
+          "algorithms",
+          "artificial intelligence",
+          "autonomous",
+          "big data",
+          "brain",
+          "cloud computing"
+        ]
+      },
+      "decoded_metadata": {
+        "width": 7373,
+        "height": 4147,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "ai",
+        "orientation": "landscape",
+        "notes": []
+      }
+    },
+    {
+      "slide_number": 2,
+      "archetype": "image_right",
+      "field": "picture",
+      "filename": "FY27 Ai Image (10).jpg",
+      "expected_role": "image_right",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 Ai Image (10).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "ai",
+        "orientation": "landscape",
+        "width": 4500,
+        "height": 3000,
+        "tags": []
+      },
+      "decoded_metadata": {
+        "width": 4500,
+        "height": 3000,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "ai",
+        "orientation": "landscape",
+        "notes": []
+      }
+    },
+    {
+      "slide_number": 3,
+      "archetype": "quote",
+      "field": "headshot",
+      "filename": "FY27 People Collaborating & Corporate (69).JPG",
+      "expected_role": "quote headshot",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 People Collaborating & Corporate (69).JPG",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "people",
+        "orientation": "landscape",
+        "width": 6000,
+        "height": 4000,
+        "tags": [
+          "african",
+          "american",
+          "benefit",
+          "black",
+          "career",
+          "clothes",
+          "communication",
+          "deadline"
+        ]
+      },
+      "decoded_metadata": {
+        "width": 6000,
+        "height": 4000,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "people",
+        "orientation": "landscape",
+        "notes": []
+      }
+    },
+    {
+      "slide_number": 4,
+      "archetype": "team",
+      "field": "members.0.picture",
+      "filename": "FY27 General Tech & IT (37).jpg",
+      "expected_role": "team member",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 General Tech & IT (37).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "people",
+        "orientation": "portrait",
+        "width": 3293,
+        "height": 4935,
+        "tags": [
+          "businesspeople",
+          "businessperson",
+          "career",
+          "confident",
+          "copyspace",
+          "corporate",
+          "creative",
+          "design"
+        ]
+      },
+      "decoded_metadata": {
+        "width": 3293,
+        "height": 4935,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "people",
+        "orientation": "portrait",
+        "notes": []
+      }
+    },
+    {
+      "slide_number": 4,
+      "archetype": "team",
+      "field": "members.1.picture",
+      "filename": "FY27 People Collaborating & Corporate (70).jpg",
+      "expected_role": "team member",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 People Collaborating & Corporate (70).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "people",
+        "orientation": "landscape",
+        "width": 7931,
+        "height": 5287,
+        "tags": [
+          "achievement",
+          "analysis",
+          "businesspeople",
+          "collaboration",
+          "colleagues",
+          "communication",
+          "connection",
+          "consulting"
+        ]
+      },
+      "decoded_metadata": {
+        "width": 7931,
+        "height": 5287,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "people",
+        "orientation": "landscape",
+        "notes": []
+      }
+    },
+    {
+      "slide_number": 4,
+      "archetype": "team",
+      "field": "members.2.picture",
+      "filename": "FY27 People Collaborating & Corporate (76).jpg",
+      "expected_role": "team member",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 People Collaborating & Corporate (76).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "people",
+        "orientation": "portrait",
+        "width": 3338,
+        "height": 5000,
+        "tags": [
+          "academy",
+          "casual",
+          "code",
+          "colleagues",
+          "concept",
+          "corporate",
+          "creative",
+          "desk"
+        ]
+      },
+      "decoded_metadata": {
+        "width": 3338,
+        "height": 5000,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "people",
+        "orientation": "portrait",
+        "notes": []
+      }
+    },
+    {
+      "slide_number": 5,
+      "archetype": "logo_wall",
+      "field": "logos.0",
+      "filename": "FY27 Ai Image (15).jpg",
+      "expected_role": "logo wall",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 Ai Image (15).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "ai",
+        "orientation": "landscape",
+        "width": 5000,
+        "height": 3500,
+        "tags": [
+          "outdoor"
+        ]
+      },
+      "decoded_metadata": {
+        "width": 5000,
+        "height": 3500,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "ai",
+        "orientation": "landscape",
+        "notes": [
+          "Logo wall image is not clearly marked as design/logo/icon in metadata."
+        ]
+      }
+    },
+    {
+      "slide_number": 5,
+      "archetype": "logo_wall",
+      "field": "logos.1",
+      "filename": "FY27 Ai Image (16).jpg",
+      "expected_role": "logo wall",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 Ai Image (16).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "ai",
+        "orientation": "landscape",
+        "width": 6000,
+        "height": 4000,
+        "tags": []
+      },
+      "decoded_metadata": {
+        "width": 6000,
+        "height": 4000,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "ai",
+        "orientation": "landscape",
+        "notes": [
+          "Logo wall image is not clearly marked as design/logo/icon in metadata."
+        ]
+      }
+    },
+    {
+      "slide_number": 5,
+      "archetype": "logo_wall",
+      "field": "logos.2",
+      "filename": "FY27 Ai Image (17).jpg",
+      "expected_role": "logo wall",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 Ai Image (17).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "ai",
+        "orientation": "landscape",
+        "width": 6720,
+        "height": 4480,
+        "tags": [
+          "businessman",
+          "community",
+          "computing",
+          "connection",
+          "cyberspace",
+          "datum",
+          "digital,3d,concept,virtual,connection,networking,globalization,innovation,interface,community,modern,design,man,holding,hands,fingers",
+          "innovation"
+        ]
+      },
+      "decoded_metadata": {
+        "width": 6720,
+        "height": 4480,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "ai",
+        "orientation": "landscape",
+        "notes": [
+          "Logo wall image is not clearly marked as design/logo/icon in metadata."
+        ]
+      }
+    },
+    {
+      "slide_number": 5,
+      "archetype": "logo_wall",
+      "field": "logos.3",
+      "filename": "FY27 Ai Image (18).jpg",
+      "expected_role": "logo wall",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 Ai Image (18).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "ai",
+        "orientation": "landscape",
+        "width": 5000,
+        "height": 2812,
+        "tags": [
+          "blue",
+          "blue background",
+          "blue backgrounds",
+          "businesswoman",
+          "chart",
+          "corporate",
+          "daily",
+          "dashboard"
+        ]
+      },
+      "decoded_metadata": {
+        "width": 5000,
+        "height": 2812,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "ai",
+        "orientation": "landscape",
+        "notes": [
+          "Logo wall image is not clearly marked as design/logo/icon in metadata."
+        ]
+      }
+    },
+    {
+      "slide_number": 6,
+      "archetype": "image_right",
+      "field": "picture",
+      "filename": "FY27 Ai Image (1).jpg",
+      "expected_role": "image_right",
+      "exists": true,
+      "resolved_path": "data\\assets\\images\\FY27 Ai Image (1).jpg",
+      "supported_extension": true,
+      "decode_success": true,
+      "decode_error": null,
+      "metadata_found": true,
+      "metadata": {
+        "category": "ai",
+        "orientation": "landscape",
+        "width": 7373,
+        "height": 4147,
+        "tags": [
+          "admin",
+          "ai brain",
+          "algorithms",
+          "artificial intelligence",
+          "autonomous",
+          "big data",
+          "brain",
+          "cloud computing"
+        ]
+      },
+      "decoded_metadata": {
+        "width": 7373,
+        "height": 4147,
+        "format": "JPEG"
+      },
+      "role_assessment": {
+        "appropriate": true,
+        "category": "ai",
+        "orientation": "landscape",
+        "notes": []
+      }
+    }
+  ],
+  "recommended_changes": []
+}

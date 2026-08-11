@@ -1,0 +1,1028 @@
+{
+  "generated_pptx": "C:\\Users\\NdivhuwoNeswiswi\\OneDrive - Mint Management Technologies\\Projects\\MiniDeckBuilder\\-Mint-Deck-Builder\\MintDeck\\python-presentation-engine\\data\\output\\Contoso Manufacturing - AI-Ready Exact-Match Archetype Validation - 2026-08-06.pptx",
+  "template_pptx": "data\\work\\template\\FY27 AI-Ready v3.0.diagnostic.pptx",
+  "rules": {
+    "modified_presentations": false,
+    "compared_properties": [
+      "left",
+      "top",
+      "width",
+      "height",
+      "margin_left",
+      "margin_right",
+      "margin_top",
+      "margin_bottom",
+      "word_wrap",
+      "vertical_anchor",
+      "auto_size"
+    ],
+    "production_pipeline_dependencies": []
+  },
+  "targets": {
+    "2": {
+      "name": "Slide 2 - Cover Dark",
+      "slide_number": 2,
+      "layout": "Cover – Dark",
+      "monitored_placeholder_indexes": [
+        0,
+        2,
+        3,
+        4,
+        11
+      ],
+      "template_layout_placeholders": {
+        "0": {
+          "idx": 0,
+          "name": "Title 1",
+          "placeholder_type": "TITLE (1)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Click to edit Master title style",
+          "left": 530352,
+          "top": 2103120,
+          "width": 7772400,
+          "height": 914400,
+          "margin_left": 0,
+          "margin_right": 0,
+          "margin_top": 0,
+          "margin_bottom": 0,
+          "word_wrap": true,
+          "vertical_anchor": "TOP (1)",
+          "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+        },
+        "11": {
+          "idx": 11,
+          "name": "Prepared For Client",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Click to edit Master text styles",
+          "left": 548640,
+          "top": 1737360,
+          "width": 7315200,
+          "height": 320040,
+          "margin_left": 0,
+          "margin_right": 0,
+          "margin_top": 0,
+          "margin_bottom": 0,
+          "word_wrap": true,
+          "vertical_anchor": "TOP (1)",
+          "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+        },
+        "2": {
+          "idx": 2,
+          "name": "Click To Edit Subtitle",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Click to edit Master text styles",
+          "left": 548640,
+          "top": 3063240,
+          "width": 7772400,
+          "height": 457200,
+          "margin_left": 0,
+          "margin_right": 0,
+          "margin_top": 0,
+          "margin_bottom": 0,
+          "word_wrap": true,
+          "vertical_anchor": "TOP (1)",
+          "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+        },
+        "3": {
+          "idx": 3,
+          "name": "Click To Edit Abstract",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Click to edit Master text styles",
+          "left": 548640,
+          "top": 3977639,
+          "width": 6858000,
+          "height": 822960,
+          "margin_left": 0,
+          "margin_right": 0,
+          "margin_top": 0,
+          "margin_bottom": 0,
+          "word_wrap": true,
+          "vertical_anchor": "TOP (1)",
+          "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+        },
+        "4": {
+          "idx": 4,
+          "name": "Prepared By Mint Group · Date",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Click to edit Master text styles",
+          "left": 548640,
+          "top": 5532120,
+          "width": 7315200,
+          "height": 274320,
+          "margin_left": 0,
+          "margin_right": 0,
+          "margin_top": 0,
+          "margin_bottom": 0,
+          "word_wrap": true,
+          "vertical_anchor": "TOP (1)",
+          "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+        }
+      },
+      "generated_slide_placeholders": {
+        "0": {
+          "idx": 0,
+          "name": "Title 1",
+          "placeholder_type": "TITLE (1)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Exact-match validation is ready",
+          "left": 530352,
+          "top": 2103120,
+          "width": 7772400,
+          "height": 914400,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": null,
+          "vertical_anchor": null,
+          "auto_size": null
+        },
+        "11": {
+          "idx": 11,
+          "name": "Text Placeholder 2",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "VALIDATION",
+          "left": 548640,
+          "top": 1737360,
+          "width": 7315200,
+          "height": 320040,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": null,
+          "vertical_anchor": null,
+          "auto_size": null
+        },
+        "2": {
+          "idx": 2,
+          "name": "Text Placeholder 3",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Baseline and template alignment",
+          "left": 548640,
+          "top": 3063240,
+          "width": 7772400,
+          "height": 457200,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": null,
+          "vertical_anchor": null,
+          "auto_size": null
+        },
+        "3": {
+          "idx": 3,
+          "name": "Text Placeholder 4",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Supported layouts are generating with populated text.",
+          "left": 548640,
+          "top": 3977639,
+          "width": 6858000,
+          "height": 822960,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": null,
+          "vertical_anchor": null,
+          "auto_size": null
+        }
+      },
+      "differences": {
+        "0": {
+          "status": "changed",
+          "message": "Placeholder geometry/text-frame settings differ from template.",
+          "template": {
+            "idx": 0,
+            "name": "Title 1",
+            "placeholder_type": "TITLE (1)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Click to edit Master title style",
+            "left": 530352,
+            "top": 2103120,
+            "width": 7772400,
+            "height": 914400,
+            "margin_left": 0,
+            "margin_right": 0,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "word_wrap": true,
+            "vertical_anchor": "TOP (1)",
+            "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+          },
+          "generated": {
+            "idx": 0,
+            "name": "Title 1",
+            "placeholder_type": "TITLE (1)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Exact-match validation is ready",
+            "left": 530352,
+            "top": 2103120,
+            "width": 7772400,
+            "height": 914400,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": null,
+            "vertical_anchor": null,
+            "auto_size": null
+          },
+          "changed_properties": {
+            "margin_left": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_right": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_top": {
+              "template": 0,
+              "generated": 45720
+            },
+            "margin_bottom": {
+              "template": 0,
+              "generated": 45720
+            },
+            "word_wrap": {
+              "template": true,
+              "generated": null
+            },
+            "vertical_anchor": {
+              "template": "TOP (1)",
+              "generated": null
+            },
+            "auto_size": {
+              "template": "TEXT_TO_FIT_SHAPE (2)",
+              "generated": null
+            }
+          }
+        },
+        "2": {
+          "status": "changed",
+          "message": "Placeholder geometry/text-frame settings differ from template.",
+          "template": {
+            "idx": 2,
+            "name": "Click To Edit Subtitle",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Click to edit Master text styles",
+            "left": 548640,
+            "top": 3063240,
+            "width": 7772400,
+            "height": 457200,
+            "margin_left": 0,
+            "margin_right": 0,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "word_wrap": true,
+            "vertical_anchor": "TOP (1)",
+            "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+          },
+          "generated": {
+            "idx": 2,
+            "name": "Text Placeholder 3",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Baseline and template alignment",
+            "left": 548640,
+            "top": 3063240,
+            "width": 7772400,
+            "height": 457200,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": null,
+            "vertical_anchor": null,
+            "auto_size": null
+          },
+          "changed_properties": {
+            "margin_left": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_right": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_top": {
+              "template": 0,
+              "generated": 45720
+            },
+            "margin_bottom": {
+              "template": 0,
+              "generated": 45720
+            },
+            "word_wrap": {
+              "template": true,
+              "generated": null
+            },
+            "vertical_anchor": {
+              "template": "TOP (1)",
+              "generated": null
+            },
+            "auto_size": {
+              "template": "TEXT_TO_FIT_SHAPE (2)",
+              "generated": null
+            }
+          }
+        },
+        "3": {
+          "status": "changed",
+          "message": "Placeholder geometry/text-frame settings differ from template.",
+          "template": {
+            "idx": 3,
+            "name": "Click To Edit Abstract",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Click to edit Master text styles",
+            "left": 548640,
+            "top": 3977639,
+            "width": 6858000,
+            "height": 822960,
+            "margin_left": 0,
+            "margin_right": 0,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "word_wrap": true,
+            "vertical_anchor": "TOP (1)",
+            "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+          },
+          "generated": {
+            "idx": 3,
+            "name": "Text Placeholder 4",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Supported layouts are generating with populated text.",
+            "left": 548640,
+            "top": 3977639,
+            "width": 6858000,
+            "height": 822960,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": null,
+            "vertical_anchor": null,
+            "auto_size": null
+          },
+          "changed_properties": {
+            "margin_left": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_right": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_top": {
+              "template": 0,
+              "generated": 45720
+            },
+            "margin_bottom": {
+              "template": 0,
+              "generated": 45720
+            },
+            "word_wrap": {
+              "template": true,
+              "generated": null
+            },
+            "vertical_anchor": {
+              "template": "TOP (1)",
+              "generated": null
+            },
+            "auto_size": {
+              "template": "TEXT_TO_FIT_SHAPE (2)",
+              "generated": null
+            }
+          }
+        },
+        "4": {
+          "status": "missing_in_generated_slide",
+          "message": "Placeholder idx 4 exists in template layout but is missing on generated slide.",
+          "template": {
+            "idx": 4,
+            "name": "Prepared By Mint Group · Date",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Click to edit Master text styles",
+            "left": 548640,
+            "top": 5532120,
+            "width": 7315200,
+            "height": 274320,
+            "margin_left": 0,
+            "margin_right": 0,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "word_wrap": true,
+            "vertical_anchor": "TOP (1)",
+            "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+          },
+          "generated": null,
+          "changed_properties": {}
+        },
+        "11": {
+          "status": "changed",
+          "message": "Placeholder geometry/text-frame settings differ from template.",
+          "template": {
+            "idx": 11,
+            "name": "Prepared For Client",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Click to edit Master text styles",
+            "left": 548640,
+            "top": 1737360,
+            "width": 7315200,
+            "height": 320040,
+            "margin_left": 0,
+            "margin_right": 0,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "word_wrap": true,
+            "vertical_anchor": "TOP (1)",
+            "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+          },
+          "generated": {
+            "idx": 11,
+            "name": "Text Placeholder 2",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "VALIDATION",
+            "left": 548640,
+            "top": 1737360,
+            "width": 7315200,
+            "height": 320040,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": null,
+            "vertical_anchor": null,
+            "auto_size": null
+          },
+          "changed_properties": {
+            "margin_left": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_right": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_top": {
+              "template": 0,
+              "generated": 45720
+            },
+            "margin_bottom": {
+              "template": 0,
+              "generated": 45720
+            },
+            "word_wrap": {
+              "template": true,
+              "generated": null
+            },
+            "vertical_anchor": {
+              "template": "TOP (1)",
+              "generated": null
+            },
+            "auto_size": {
+              "template": "TEXT_TO_FIT_SHAPE (2)",
+              "generated": null
+            }
+          }
+        }
+      },
+      "summary": {
+        "placeholders_checked": 5,
+        "placeholders_changed": 4,
+        "placeholders_missing": 1,
+        "changed_placeholder_indexes": [
+          "0",
+          "2",
+          "3",
+          "11"
+        ],
+        "missing_placeholder_indexes": [
+          "4"
+        ],
+        "properties_that_differ": [
+          "auto_size",
+          "margin_bottom",
+          "margin_left",
+          "margin_right",
+          "margin_top",
+          "vertical_anchor",
+          "word_wrap"
+        ],
+        "geometry_matches_template": false,
+        "message": "Placeholder differences were detected."
+      }
+    },
+    "20": {
+      "name": "Slide 20 - Summary / CTA",
+      "slide_number": 20,
+      "layout": "Content Slide 1 – Body + CTA",
+      "monitored_placeholder_indexes": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "template_layout_placeholders": {
+        "3": {
+          "idx": 3,
+          "name": "Footer Placeholder 3",
+          "placeholder_type": "FOOTER (15)",
+          "has_text_frame": true,
+          "contains_text": false,
+          "text": "",
+          "left": 1000000,
+          "top": 6510000,
+          "width": 5000000,
+          "height": 240000,
+          "margin_left": 0,
+          "margin_right": 0,
+          "margin_top": 0,
+          "margin_bottom": 0,
+          "word_wrap": null,
+          "vertical_anchor": "MIDDLE (3)",
+          "auto_size": null
+        },
+        "0": {
+          "idx": 0,
+          "name": "Title 1",
+          "placeholder_type": "TITLE (1)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Click to edit Master title style",
+          "left": 4270938,
+          "top": 1581527,
+          "width": 7040880,
+          "height": 1188720,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": null,
+          "vertical_anchor": "MIDDLE (3)",
+          "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+        },
+        "2": {
+          "idx": 2,
+          "name": "Subheading 2",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Click to edit Master text styles",
+          "left": 4270938,
+          "top": 2872822,
+          "width": 7037427,
+          "height": 461665,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": true,
+          "vertical_anchor": null,
+          "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+        },
+        "4": {
+          "idx": 4,
+          "name": "Slide Number Placeholder 4",
+          "placeholder_type": "SLIDE_NUMBER (13)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "‹#›",
+          "left": 338667,
+          "top": 6510000,
+          "width": 500000,
+          "height": 240000,
+          "margin_left": 0,
+          "margin_right": 0,
+          "margin_top": 0,
+          "margin_bottom": 0,
+          "word_wrap": null,
+          "vertical_anchor": "MIDDLE (3)",
+          "auto_size": null
+        }
+      },
+      "generated_slide_placeholders": {
+        "3": {
+          "idx": 3,
+          "name": "Text Placeholder 1",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "The generated deck should confirm that every supported exact-match archetype resolves, populates and saves cleanly.",
+          "left": 4270938,
+          "top": 3543667,
+          "width": 6529312,
+          "height": 1384995,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": null,
+          "vertical_anchor": null,
+          "auto_size": null
+        },
+        "0": {
+          "idx": 0,
+          "name": "Title 2",
+          "placeholder_type": "TITLE (1)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "The validation package is ready for review.",
+          "left": 4270938,
+          "top": 1581527,
+          "width": 7040880,
+          "height": 1188720,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": null,
+          "vertical_anchor": null,
+          "auto_size": null
+        },
+        "2": {
+          "idx": 2,
+          "name": "Text Placeholder 3",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Exact-match archetype coverage",
+          "left": 4270938,
+          "top": 2872822,
+          "width": 7037427,
+          "height": 461665,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": null,
+          "vertical_anchor": null,
+          "auto_size": null
+        },
+        "4": {
+          "idx": 4,
+          "name": "Text Placeholder 4",
+          "placeholder_type": "BODY (2)",
+          "has_text_frame": true,
+          "contains_text": true,
+          "text": "Review output and approve\nnext implementation phase.",
+          "left": 6773730,
+          "top": 5348399,
+          "width": 7037427,
+          "height": 461665,
+          "margin_left": 91440,
+          "margin_right": 91440,
+          "margin_top": 45720,
+          "margin_bottom": 45720,
+          "word_wrap": null,
+          "vertical_anchor": null,
+          "auto_size": null
+        }
+      },
+      "differences": {
+        "0": {
+          "status": "changed",
+          "message": "Placeholder geometry/text-frame settings differ from template.",
+          "template": {
+            "idx": 0,
+            "name": "Title 1",
+            "placeholder_type": "TITLE (1)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Click to edit Master title style",
+            "left": 4270938,
+            "top": 1581527,
+            "width": 7040880,
+            "height": 1188720,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": null,
+            "vertical_anchor": "MIDDLE (3)",
+            "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+          },
+          "generated": {
+            "idx": 0,
+            "name": "Title 2",
+            "placeholder_type": "TITLE (1)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "The validation package is ready for review.",
+            "left": 4270938,
+            "top": 1581527,
+            "width": 7040880,
+            "height": 1188720,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": null,
+            "vertical_anchor": null,
+            "auto_size": null
+          },
+          "changed_properties": {
+            "vertical_anchor": {
+              "template": "MIDDLE (3)",
+              "generated": null
+            },
+            "auto_size": {
+              "template": "TEXT_TO_FIT_SHAPE (2)",
+              "generated": null
+            }
+          }
+        },
+        "2": {
+          "status": "changed",
+          "message": "Placeholder geometry/text-frame settings differ from template.",
+          "template": {
+            "idx": 2,
+            "name": "Subheading 2",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Click to edit Master text styles",
+            "left": 4270938,
+            "top": 2872822,
+            "width": 7037427,
+            "height": 461665,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": true,
+            "vertical_anchor": null,
+            "auto_size": "TEXT_TO_FIT_SHAPE (2)"
+          },
+          "generated": {
+            "idx": 2,
+            "name": "Text Placeholder 3",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Exact-match archetype coverage",
+            "left": 4270938,
+            "top": 2872822,
+            "width": 7037427,
+            "height": 461665,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": null,
+            "vertical_anchor": null,
+            "auto_size": null
+          },
+          "changed_properties": {
+            "word_wrap": {
+              "template": true,
+              "generated": null
+            },
+            "auto_size": {
+              "template": "TEXT_TO_FIT_SHAPE (2)",
+              "generated": null
+            }
+          }
+        },
+        "3": {
+          "status": "changed",
+          "message": "Placeholder geometry/text-frame settings differ from template.",
+          "template": {
+            "idx": 3,
+            "name": "Footer Placeholder 3",
+            "placeholder_type": "FOOTER (15)",
+            "has_text_frame": true,
+            "contains_text": false,
+            "text": "",
+            "left": 1000000,
+            "top": 6510000,
+            "width": 5000000,
+            "height": 240000,
+            "margin_left": 0,
+            "margin_right": 0,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "word_wrap": null,
+            "vertical_anchor": "MIDDLE (3)",
+            "auto_size": null
+          },
+          "generated": {
+            "idx": 3,
+            "name": "Text Placeholder 1",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "The generated deck should confirm that every supported exact-match archetype resolves, populates and saves cleanly.",
+            "left": 4270938,
+            "top": 3543667,
+            "width": 6529312,
+            "height": 1384995,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": null,
+            "vertical_anchor": null,
+            "auto_size": null
+          },
+          "changed_properties": {
+            "left": {
+              "template": 1000000,
+              "generated": 4270938
+            },
+            "top": {
+              "template": 6510000,
+              "generated": 3543667
+            },
+            "width": {
+              "template": 5000000,
+              "generated": 6529312
+            },
+            "height": {
+              "template": 240000,
+              "generated": 1384995
+            },
+            "margin_left": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_right": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_top": {
+              "template": 0,
+              "generated": 45720
+            },
+            "margin_bottom": {
+              "template": 0,
+              "generated": 45720
+            },
+            "vertical_anchor": {
+              "template": "MIDDLE (3)",
+              "generated": null
+            }
+          }
+        },
+        "4": {
+          "status": "changed",
+          "message": "Placeholder geometry/text-frame settings differ from template.",
+          "template": {
+            "idx": 4,
+            "name": "Slide Number Placeholder 4",
+            "placeholder_type": "SLIDE_NUMBER (13)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "‹#›",
+            "left": 338667,
+            "top": 6510000,
+            "width": 500000,
+            "height": 240000,
+            "margin_left": 0,
+            "margin_right": 0,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "word_wrap": null,
+            "vertical_anchor": "MIDDLE (3)",
+            "auto_size": null
+          },
+          "generated": {
+            "idx": 4,
+            "name": "Text Placeholder 4",
+            "placeholder_type": "BODY (2)",
+            "has_text_frame": true,
+            "contains_text": true,
+            "text": "Review output and approve\nnext implementation phase.",
+            "left": 6773730,
+            "top": 5348399,
+            "width": 7037427,
+            "height": 461665,
+            "margin_left": 91440,
+            "margin_right": 91440,
+            "margin_top": 45720,
+            "margin_bottom": 45720,
+            "word_wrap": null,
+            "vertical_anchor": null,
+            "auto_size": null
+          },
+          "changed_properties": {
+            "left": {
+              "template": 338667,
+              "generated": 6773730
+            },
+            "top": {
+              "template": 6510000,
+              "generated": 5348399
+            },
+            "width": {
+              "template": 500000,
+              "generated": 7037427
+            },
+            "height": {
+              "template": 240000,
+              "generated": 461665
+            },
+            "margin_left": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_right": {
+              "template": 0,
+              "generated": 91440
+            },
+            "margin_top": {
+              "template": 0,
+              "generated": 45720
+            },
+            "margin_bottom": {
+              "template": 0,
+              "generated": 45720
+            },
+            "vertical_anchor": {
+              "template": "MIDDLE (3)",
+              "generated": null
+            }
+          }
+        }
+      },
+      "summary": {
+        "placeholders_checked": 4,
+        "placeholders_changed": 4,
+        "placeholders_missing": 0,
+        "changed_placeholder_indexes": [
+          "0",
+          "2",
+          "3",
+          "4"
+        ],
+        "missing_placeholder_indexes": [],
+        "properties_that_differ": [
+          "auto_size",
+          "height",
+          "left",
+          "margin_bottom",
+          "margin_left",
+          "margin_right",
+          "margin_top",
+          "top",
+          "vertical_anchor",
+          "width",
+          "word_wrap"
+        ],
+        "geometry_matches_template": false,
+        "message": "Placeholder differences were detected."
+      }
+    }
+  },
+  "console_summary": {
+    "placeholders_checked": 9,
+    "placeholders_changed": 8,
+    "placeholders_missing": 1,
+    "properties_that_differ": [
+      "auto_size",
+      "height",
+      "left",
+      "margin_bottom",
+      "margin_left",
+      "margin_right",
+      "margin_top",
+      "top",
+      "vertical_anchor",
+      "width",
+      "word_wrap"
+    ]
+  }
+}

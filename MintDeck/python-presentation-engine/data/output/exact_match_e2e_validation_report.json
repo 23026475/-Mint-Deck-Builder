@@ -1,0 +1,1269 @@
+{
+  "contract": "data\\input\\exact_match_e2e_contract.json",
+  "generated_pptx": "C:\\Users\\NdivhuwoNeswiswi\\OneDrive - Mint Management Technologies\\Projects\\MiniDeckBuilder\\-Mint-Deck-Builder\\MintDeck\\python-presentation-engine\\data\\output\\Contoso Manufacturing - AI-Ready Exact-Match Archetype Validation - 2026-08-07.pptx",
+  "slide_count": 21,
+  "expected_slide_count": 21,
+  "duplicate_zip_entries": 0,
+  "duplicate_zip_entry_details": {},
+  "defects": [],
+  "slides": [
+    {
+      "slide_number": 1,
+      "archetype": "cover",
+      "expected_layout": "Cover – Brand",
+      "actual_layout": "Cover – Brand",
+      "mapper_resolved_layout": "Cover – Brand",
+      "text_shape_count": 5,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "fields.title"
+        },
+        {
+          "idx": 2,
+          "name": "subtitle",
+          "source": "fields.subtitle"
+        },
+        {
+          "idx": 3,
+          "name": "abstract",
+          "source": "fields.abstract"
+        },
+        {
+          "idx": 4,
+          "name": "prepared_by",
+          "source": "fields.prepared-by"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 2,
+      "archetype": "cover_dark",
+      "expected_layout": "Cover – Dark",
+      "actual_layout": "Cover – Dark",
+      "mapper_resolved_layout": "Cover – Dark",
+      "text_shape_count": 4,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "fields.title"
+        },
+        {
+          "idx": 2,
+          "name": "subtitle",
+          "source": "fields.subtitle"
+        },
+        {
+          "idx": 3,
+          "name": "abstract",
+          "source": "fields.abstract"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [
+        {
+          "idx": 4,
+          "name": "Text Placeholder 5",
+          "text": "",
+          "reason": "unfilled text placeholder"
+        }
+      ],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 3,
+      "archetype": "statement",
+      "expected_layout": "Statement – Full Bleed",
+      "actual_layout": "Statement – Full Bleed",
+      "mapper_resolved_layout": "Statement – Full Bleed",
+      "text_shape_count": 3,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "statement",
+          "source": "action_title"
+        },
+        {
+          "idx": 2,
+          "name": "support",
+          "source": "fields.statement"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 4,
+      "archetype": "thesis",
+      "expected_layout": "Thesis",
+      "actual_layout": "Thesis",
+      "mapper_resolved_layout": "Thesis",
+      "text_shape_count": 6,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 20,
+          "name": "claim1",
+          "source": "fields.claims.0"
+        },
+        {
+          "idx": 21,
+          "name": "claim2",
+          "source": "fields.claims.1"
+        },
+        {
+          "idx": 22,
+          "name": "pivot_question",
+          "source": "fields.pivot_question"
+        },
+        {
+          "idx": 23,
+          "name": "verdict",
+          "source": "fields.verdict"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [
+        {
+          "idx": 24,
+          "name": "Text Placeholder 7",
+          "text": "",
+          "reason": "unfilled text placeholder"
+        }
+      ],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 5,
+      "archetype": "cards3",
+      "expected_layout": "Content – Cards 3",
+      "actual_layout": "Content – Cards 3",
+      "mapper_resolved_layout": "Content – Cards 3",
+      "text_shape_count": 8,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 20,
+          "name": "card1_title",
+          "source": "fields.cards.0.title"
+        },
+        {
+          "idx": 21,
+          "name": "card1_body",
+          "source": "fields.cards.0.body"
+        },
+        {
+          "idx": 22,
+          "name": "card2_title",
+          "source": "fields.cards.1.title"
+        },
+        {
+          "idx": 23,
+          "name": "card2_body",
+          "source": "fields.cards.1.body"
+        },
+        {
+          "idx": 24,
+          "name": "card3_title",
+          "source": "fields.cards.2.title"
+        },
+        {
+          "idx": 25,
+          "name": "card3_body",
+          "source": "fields.cards.2.body"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [
+        {
+          "idx": 12,
+          "name": "Text Placeholder 3",
+          "text": "",
+          "reason": "unfilled text placeholder"
+        },
+        {
+          "idx": 40,
+          "name": "Text Placeholder 10",
+          "text": "",
+          "reason": "unfilled text placeholder"
+        }
+      ],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 6,
+      "archetype": "image_right",
+      "expected_layout": "Content – Image Right",
+      "actual_layout": "Content – Image Right",
+      "mapper_resolved_layout": "Content – Image Right",
+      "text_shape_count": 3,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 12,
+          "name": "body",
+          "source": "fields.body"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [
+        {
+          "idx": 20,
+          "name": "picture",
+          "content_type": "image",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 20,
+          "name": "Picture Placeholder 4",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 7,
+      "archetype": "comparison",
+      "expected_layout": "Content – Comparison",
+      "actual_layout": "Content – Comparison",
+      "mapper_resolved_layout": "Content – Comparison",
+      "text_shape_count": 7,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 20,
+          "name": "left_heading",
+          "source": "fields.columns.0.heading"
+        },
+        {
+          "idx": 21,
+          "name": "left_points",
+          "source": "fields.columns.0.points"
+        },
+        {
+          "idx": 22,
+          "name": "right_heading",
+          "source": "fields.columns.1.heading"
+        },
+        {
+          "idx": 23,
+          "name": "right_points",
+          "source": "fields.columns.1.points"
+        },
+        {
+          "idx": 40,
+          "name": "verdict",
+          "source": "fields.verdict"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 8,
+      "archetype": "faq",
+      "expected_layout": "FAQ",
+      "actual_layout": "FAQ",
+      "mapper_resolved_layout": "FAQ",
+      "text_shape_count": 10,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 20,
+          "name": "q1",
+          "source": "fields.items.0.question"
+        },
+        {
+          "idx": 21,
+          "name": "a1",
+          "source": "fields.items.0.answer"
+        },
+        {
+          "idx": 22,
+          "name": "q2",
+          "source": "fields.items.1.question"
+        },
+        {
+          "idx": 23,
+          "name": "a2",
+          "source": "fields.items.1.answer"
+        },
+        {
+          "idx": 24,
+          "name": "q3",
+          "source": "fields.items.2.question"
+        },
+        {
+          "idx": 25,
+          "name": "a3",
+          "source": "fields.items.2.answer"
+        },
+        {
+          "idx": 26,
+          "name": "q4",
+          "source": "fields.items.3.question"
+        },
+        {
+          "idx": 27,
+          "name": "a4",
+          "source": "fields.items.3.answer"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 9,
+      "archetype": "process_flow",
+      "expected_layout": "Content – Process Flow",
+      "actual_layout": "Content – Process Flow",
+      "mapper_resolved_layout": "Content – Process Flow",
+      "text_shape_count": 10,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 20,
+          "name": "step1_title",
+          "source": "fields.steps.0.title"
+        },
+        {
+          "idx": 21,
+          "name": "step1_body",
+          "source": "fields.steps.0.body"
+        },
+        {
+          "idx": 22,
+          "name": "step2_title",
+          "source": "fields.steps.1.title"
+        },
+        {
+          "idx": 23,
+          "name": "step2_body",
+          "source": "fields.steps.1.body"
+        },
+        {
+          "idx": 24,
+          "name": "step3_title",
+          "source": "fields.steps.2.title"
+        },
+        {
+          "idx": 25,
+          "name": "step3_body",
+          "source": "fields.steps.2.body"
+        },
+        {
+          "idx": 26,
+          "name": "step4_title",
+          "source": "fields.steps.3.title"
+        },
+        {
+          "idx": 27,
+          "name": "step4_body",
+          "source": "fields.steps.3.body"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [
+        {
+          "idx": 12,
+          "name": "Text Placeholder 3",
+          "text": "",
+          "reason": "unfilled text placeholder"
+        },
+        {
+          "idx": 40,
+          "name": "Text Placeholder 12",
+          "text": "",
+          "reason": "unfilled text placeholder"
+        }
+      ],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 10,
+      "archetype": "table",
+      "expected_layout": "Content – Table",
+      "actual_layout": "Content – Table",
+      "mapper_resolved_layout": "Content – Table",
+      "text_shape_count": 4,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 12,
+          "name": "intro",
+          "source": "fields.intro"
+        },
+        {
+          "idx": 40,
+          "name": "callout",
+          "source": "fields.callout"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [
+        {
+          "idx": 10,
+          "name": "table",
+          "content_type": "table",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 10,
+          "name": "Table Placeholder 5",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 11,
+      "archetype": "chart",
+      "expected_layout": "Content – Chart",
+      "actual_layout": "Content – Chart",
+      "mapper_resolved_layout": "Content – Chart",
+      "text_shape_count": 4,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 14,
+          "name": "takeaway",
+          "source": "fields.takeaway"
+        },
+        {
+          "idx": 41,
+          "name": "source",
+          "source": "fields.source"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [
+        {
+          "idx": 13,
+          "name": "Text Placeholder 4",
+          "text": "",
+          "reason": "unfilled text placeholder"
+        }
+      ],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [
+        {
+          "idx": 10,
+          "name": "chart",
+          "content_type": "chart",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 10,
+          "name": "Chart Placeholder 3",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 12,
+      "archetype": "kpi",
+      "expected_layout": "KPI – 4 Stats",
+      "actual_layout": "KPI – 4 Stats",
+      "mapper_resolved_layout": "KPI – 4 Stats",
+      "text_shape_count": 11,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 20,
+          "name": "stat1_number",
+          "source": "fields.stats.0.number"
+        },
+        {
+          "idx": 21,
+          "name": "stat1_label",
+          "source": "fields.stats.0.label"
+        },
+        {
+          "idx": 22,
+          "name": "stat2_number",
+          "source": "fields.stats.1.number"
+        },
+        {
+          "idx": 23,
+          "name": "stat2_label",
+          "source": "fields.stats.1.label"
+        },
+        {
+          "idx": 24,
+          "name": "stat3_number",
+          "source": "fields.stats.2.number"
+        },
+        {
+          "idx": 25,
+          "name": "stat3_label",
+          "source": "fields.stats.2.label"
+        },
+        {
+          "idx": 26,
+          "name": "stat4_number",
+          "source": "fields.stats.3.number"
+        },
+        {
+          "idx": 27,
+          "name": "stat4_label",
+          "source": "fields.stats.3.label"
+        },
+        {
+          "idx": 40,
+          "name": "context",
+          "source": "fields.context"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 13,
+      "archetype": "matrix",
+      "expected_layout": "Matrix 2x2",
+      "actual_layout": "Matrix 2x2",
+      "mapper_resolved_layout": "Matrix 2x2",
+      "text_shape_count": 12,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 20,
+          "name": "q1_title",
+          "source": "fields.quadrants.0.title"
+        },
+        {
+          "idx": 21,
+          "name": "q1_items",
+          "source": "fields.quadrants.0.items"
+        },
+        {
+          "idx": 22,
+          "name": "q2_title",
+          "source": "fields.quadrants.1.title"
+        },
+        {
+          "idx": 23,
+          "name": "q2_items",
+          "source": "fields.quadrants.1.items"
+        },
+        {
+          "idx": 24,
+          "name": "q3_title",
+          "source": "fields.quadrants.2.title"
+        },
+        {
+          "idx": 25,
+          "name": "q3_items",
+          "source": "fields.quadrants.2.items"
+        },
+        {
+          "idx": 26,
+          "name": "q4_title",
+          "source": "fields.quadrants.3.title"
+        },
+        {
+          "idx": 27,
+          "name": "q4_items",
+          "source": "fields.quadrants.3.items"
+        },
+        {
+          "idx": 30,
+          "name": "vertical_axis",
+          "source": "fields.vertical_axis"
+        },
+        {
+          "idx": 31,
+          "name": "horizontal_axis",
+          "source": "fields.horizontal_axis"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 14,
+      "archetype": "team",
+      "expected_layout": "Meet the Team",
+      "actual_layout": "Meet the Team",
+      "mapper_resolved_layout": "Meet the Team",
+      "text_shape_count": 7,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 10,
+          "name": "person1_name",
+          "source": "fields.members.0.name"
+        },
+        {
+          "idx": 11,
+          "name": "person1_role",
+          "source": "fields.members.0.role"
+        },
+        {
+          "idx": 12,
+          "name": "person2_name",
+          "source": "fields.members.1.name"
+        },
+        {
+          "idx": 13,
+          "name": "person2_role",
+          "source": "fields.members.1.role"
+        },
+        {
+          "idx": 14,
+          "name": "person3_name",
+          "source": "fields.members.2.name"
+        },
+        {
+          "idx": 15,
+          "name": "person3_role",
+          "source": "fields.members.2.role"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [
+        {
+          "idx": 20,
+          "name": "picture1",
+          "content_type": "image",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 21,
+          "name": "picture2",
+          "content_type": "image",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 22,
+          "name": "picture3",
+          "content_type": "image",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 20,
+          "name": "Picture Placeholder 2",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        },
+        {
+          "idx": 21,
+          "name": "Picture Placeholder 5",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        },
+        {
+          "idx": 22,
+          "name": "Picture Placeholder 6",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 15,
+      "archetype": "org_chart",
+      "expected_layout": "Org Chart",
+      "actual_layout": "Org Chart",
+      "mapper_resolved_layout": "Org Chart",
+      "text_shape_count": 10,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 20,
+          "name": "top_role",
+          "source": "fields.top_role"
+        },
+        {
+          "idx": 21,
+          "name": "lead1",
+          "source": "fields.leads.0"
+        },
+        {
+          "idx": 22,
+          "name": "lead2",
+          "source": "fields.leads.1"
+        },
+        {
+          "idx": 23,
+          "name": "lead3",
+          "source": "fields.leads.2"
+        },
+        {
+          "idx": 24,
+          "name": "team1",
+          "source": "fields.teams.0"
+        },
+        {
+          "idx": 25,
+          "name": "team2",
+          "source": "fields.teams.1"
+        },
+        {
+          "idx": 26,
+          "name": "team3",
+          "source": "fields.teams.2"
+        },
+        {
+          "idx": 40,
+          "name": "note",
+          "source": "fields.note"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 16,
+      "archetype": "logo_wall",
+      "expected_layout": "Logo Wall",
+      "actual_layout": "Logo Wall",
+      "mapper_resolved_layout": "Logo Wall",
+      "text_shape_count": 3,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 40,
+          "name": "caption",
+          "source": "fields.caption"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [
+        {
+          "idx": 20,
+          "name": "logo1",
+          "content_type": "logo",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 21,
+          "name": "logo2",
+          "content_type": "logo",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 22,
+          "name": "logo3",
+          "content_type": "logo",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 23,
+          "name": "logo4",
+          "content_type": "logo",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 24,
+          "name": "logo5",
+          "content_type": "logo",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 25,
+          "name": "logo6",
+          "content_type": "logo",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 26,
+          "name": "logo7",
+          "content_type": "logo",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 27,
+          "name": "logo8",
+          "content_type": "logo",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 20,
+          "name": "Picture Placeholder 3",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        },
+        {
+          "idx": 21,
+          "name": "Picture Placeholder 4",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        },
+        {
+          "idx": 22,
+          "name": "Picture Placeholder 5",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        },
+        {
+          "idx": 23,
+          "name": "Picture Placeholder 6",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        },
+        {
+          "idx": 24,
+          "name": "Picture Placeholder 7",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        },
+        {
+          "idx": 25,
+          "name": "Picture Placeholder 8",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        },
+        {
+          "idx": 26,
+          "name": "Picture Placeholder 9",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        },
+        {
+          "idx": 27,
+          "name": "Picture Placeholder 10",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 17,
+      "archetype": "case_study",
+      "expected_layout": "Case Study",
+      "actual_layout": "Case Study",
+      "mapper_resolved_layout": "Case Study",
+      "text_shape_count": 7,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 13,
+          "name": "client_line",
+          "source": "fields.client_line"
+        },
+        {
+          "idx": 20,
+          "name": "challenge",
+          "source": "fields.challenge"
+        },
+        {
+          "idx": 21,
+          "name": "approach",
+          "source": "fields.approach"
+        },
+        {
+          "idx": 22,
+          "name": "outcome",
+          "source": "fields.outcome"
+        },
+        {
+          "idx": 40,
+          "name": "headline_result",
+          "source": "fields.headline_result"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 18,
+      "archetype": "quote",
+      "expected_layout": "Quote",
+      "actual_layout": "Quote",
+      "mapper_resolved_layout": "Quote",
+      "text_shape_count": 3,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 20,
+          "name": "quote",
+          "source": "fields.quote"
+        },
+        {
+          "idx": 21,
+          "name": "name",
+          "source": "fields.attribution"
+        },
+        {
+          "idx": 22,
+          "name": "role",
+          "source": "fields.role"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [
+        {
+          "idx": 30,
+          "name": "headshot",
+          "content_type": "image",
+          "reason": "reserved for future media handler"
+        },
+        {
+          "idx": 30,
+          "name": "Picture Placeholder 4",
+          "content_type": "media",
+          "reason": "media placeholder preserved"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 19,
+      "archetype": "pricing_stat",
+      "expected_layout": "Content – Pricing Stat",
+      "actual_layout": "Content – Pricing Stat",
+      "mapper_resolved_layout": "Content – Pricing Stat",
+      "text_shape_count": 11,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 13,
+          "name": "lead_in",
+          "source": "fields.lead_in"
+        },
+        {
+          "idx": 14,
+          "name": "bullet_col_1",
+          "source": "fields.bullet_columns.0"
+        },
+        {
+          "idx": 15,
+          "name": "bullet_col_2",
+          "source": "fields.bullet_columns.1"
+        },
+        {
+          "idx": 20,
+          "name": "stat_kicker",
+          "source": "fields.stat.kicker"
+        },
+        {
+          "idx": 21,
+          "name": "number",
+          "source": "fields.stat.number"
+        },
+        {
+          "idx": 22,
+          "name": "secondary",
+          "source": "fields.stat.secondary"
+        },
+        {
+          "idx": 23,
+          "name": "term",
+          "source": "fields.stat.term"
+        },
+        {
+          "idx": 24,
+          "name": "note",
+          "source": "fields.stat.note"
+        },
+        {
+          "idx": 41,
+          "name": "fine_print",
+          "source": "fields.fine_print"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [
+        {
+          "idx": 12,
+          "name": "Text Placeholder 3",
+          "text": "",
+          "reason": "unfilled text placeholder"
+        }
+      ],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 20,
+      "archetype": "summary_cta",
+      "expected_layout": "Content Slide 1 – Body + CTA",
+      "actual_layout": "Content Slide 1 – Body + CTA",
+      "mapper_resolved_layout": "Content Slide 1 – Body + CTA",
+      "text_shape_count": 4,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 2,
+          "name": "subheading",
+          "source": "fields.subheading"
+        },
+        {
+          "idx": 3,
+          "name": "body",
+          "source": "fields.body"
+        },
+        {
+          "idx": 4,
+          "name": "cta",
+          "source": "fields.cta"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    },
+    {
+      "slide_number": 21,
+      "archetype": "closing",
+      "expected_layout": "Closing – Next Steps",
+      "actual_layout": "Closing – Next Steps",
+      "mapper_resolved_layout": "Closing – Next Steps",
+      "text_shape_count": 4,
+      "has_prompt_leak": false,
+      "prompt_leaks": [],
+      "populated_placeholders": [
+        {
+          "idx": 0,
+          "name": "title",
+          "source": "action_title"
+        },
+        {
+          "idx": 11,
+          "name": "kicker",
+          "source": "fields.kicker"
+        },
+        {
+          "idx": 12,
+          "name": "steps",
+          "source": "fields.steps"
+        },
+        {
+          "idx": 13,
+          "name": "footer",
+          "source": "fields.footer"
+        }
+      ],
+      "removed_unfilled_text_placeholders": [],
+      "removed_prompt_text_placeholders": [],
+      "preserved_media_placeholders": [],
+      "status": "PASS"
+    }
+  ],
+  "cleanup_report_count": 21,
+  "overall_status": "PASS"
+}

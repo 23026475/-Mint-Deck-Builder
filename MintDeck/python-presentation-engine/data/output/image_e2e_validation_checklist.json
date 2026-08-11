@@ -1,0 +1,76 @@
+[
+  {
+    "slide_number": 1,
+    "archetype": "image_right",
+    "expected_image": "FY27 Ai Image (1).jpg",
+    "field": "picture",
+    "expected_placeholder_idx": 20,
+    "behaviour": "single image insertion"
+  },
+  {
+    "slide_number": 2,
+    "archetype": "image_right",
+    "expected_image": "FY27 Ai Image (10).jpg",
+    "field": "picture",
+    "expected_placeholder_idx": 20,
+    "behaviour": "second image insertion and letterboxing validation"
+  },
+  {
+    "slide_number": 3,
+    "archetype": "quote",
+    "expected_image": "FY27 Ai Image (11).jpg",
+    "field": "headshot",
+    "expected_placeholder_idx": 30,
+    "behaviour": "quote headshot insertion"
+  },
+  {
+    "slide_number": 4,
+    "archetype": "team",
+    "expected_image": "FY27 Ai Image (12).jpg",
+    "field": "members.0.picture",
+    "expected_placeholder_idx": 20,
+    "behaviour": "team member image 1"
+  },
+  {
+    "slide_number": 4,
+    "archetype": "team",
+    "expected_image": "FY27 Ai Image (13).jpg",
+    "field": "members.1.picture",
+    "expected_placeholder_idx": 21,
+    "behaviour": "team member image 2"
+  },
+  {
+    "slide_number": 4,
+    "archetype": "team",
+    "expected_image": "FY27 Ai Image (14).jpg",
+    "field": "members.2.picture",
+    "expected_placeholder_idx": 22,
+    "behaviour": "team member image 3"
+  },
+  {
+    "slide_number": 5,
+    "archetype": "logo_wall",
+    "expected_image": [
+      "FY27 Ai Image (15).jpg",
+      "FY27 Ai Image (16).jpg",
+      "FY27 Ai Image (17).jpg",
+      "FY27 Ai Image (18).jpg"
+    ],
+    "field": "logos",
+    "expected_placeholder_idx": [
+      20,
+      21,
+      22,
+      23
+    ],
+    "behaviour": "multiple images on one slide"
+  },
+  {
+    "slide_number": 6,
+    "archetype": "image_right",
+    "expected_image": "FY27 Ai Image (1).jpg",
+    "field": "picture",
+    "expected_placeholder_idx": 20,
+    "behaviour": "repeated image usage for cache validation"
+  }
+]

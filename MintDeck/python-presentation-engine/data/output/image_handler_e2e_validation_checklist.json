@@ -1,0 +1,107 @@
+[
+  {
+    "slide_number": 1,
+    "archetype": "image_right",
+    "expected_image_filenames": [
+      "FY27 Ai Image (1).jpg"
+    ],
+    "placeholder_fields": [
+      "picture"
+    ],
+    "expected_placeholder_indexes": [
+      20
+    ],
+    "expected_image_orientation": [
+      "landscape"
+    ],
+    "expected_behaviour": "single landscape image; letterboxing and placeholder geometry check"
+  },
+  {
+    "slide_number": 2,
+    "archetype": "quote",
+    "expected_image_filenames": [
+      "FY27 Public Sector (11).jpg"
+    ],
+    "placeholder_fields": [
+      "headshot"
+    ],
+    "expected_placeholder_indexes": [
+      30
+    ],
+    "expected_image_orientation": [
+      "portrait"
+    ],
+    "expected_behaviour": "quote headshot image insertion"
+  },
+  {
+    "slide_number": 3,
+    "archetype": "team",
+    "expected_image_filenames": [
+      "FY27 General Tech & IT (37).jpg",
+      "FY27 Public Sector (36).jpg",
+      "FY27 Education (10).jpg"
+    ],
+    "placeholder_fields": [
+      "member_picture[0]",
+      "member_picture[1]",
+      "member_picture[2]"
+    ],
+    "expected_placeholder_indexes": [
+      20,
+      21,
+      22
+    ],
+    "expected_image_orientation": [
+      "portrait",
+      "portrait",
+      "landscape"
+    ],
+    "expected_behaviour": "three images on one slide; member_picture occurrence mapping"
+  },
+  {
+    "slide_number": 4,
+    "archetype": "logo_wall",
+    "expected_image_filenames": [
+      "FY27 People Collaborating & Corporate (77).jpg",
+      "FY27 Data & Security (37).jpg",
+      "FY27 General Tech & IT (38).jpg",
+      "FY27 Healthcare (9).jpg"
+    ],
+    "placeholder_fields": [
+      "logo[0]",
+      "logo[1]",
+      "logo[2]",
+      "logo[3]"
+    ],
+    "expected_placeholder_indexes": [
+      20,
+      21,
+      22,
+      23
+    ],
+    "expected_image_orientation": [
+      "square",
+      "square",
+      "landscape",
+      "portrait"
+    ],
+    "expected_behaviour": "multiple images on one slide; logo occurrence mapping"
+  },
+  {
+    "slide_number": 5,
+    "archetype": "image_right",
+    "expected_image_filenames": [
+      "FY27 Ai Image (1).jpg"
+    ],
+    "placeholder_fields": [
+      "picture"
+    ],
+    "expected_placeholder_indexes": [
+      20
+    ],
+    "expected_image_orientation": [
+      "landscape"
+    ],
+    "expected_behaviour": "repeated image usage for cache validation"
+  }
+]
