@@ -1,0 +1,38 @@
+{
+  "deck": {
+    "client": "Contoso Manufacturing",
+    "title": "Chart Handler E2E Validation",
+    "mode": "STAGE"
+  },
+  "slides": [
+    {
+      "archetype": "chart",
+      "action_title": "Chart Handler validates structured chart data",
+      "fields": {
+        "kicker": "CHART VALIDATION",
+        "lead_in": "Validates chart insertion through the media pipeline.",
+        "chart": {
+          "type": "column",
+          "title": "Milestone Progress",
+          "categories": [
+            "Images",
+            "Tables",
+            "Charts"
+          ],
+          "series": [
+            {
+              "name": "Status",
+              "values": [
+                100,
+                60,
+                10
+              ]
+            }
+          ]
+        },
+        "takeaway": "The chart validates structured category and series data.",
+        "source": "Internal validation contract"
+      }
+    }
+  ]
+}

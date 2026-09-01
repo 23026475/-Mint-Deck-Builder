@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "description": "Text-container sizing policy for approved template placeholders. Contract wording and template typography remain unchanged.",
+  "units": "inches",
+  "defaults": {
+    "mode": "fixed",
+    "vertical_anchor": "top",
+    "margin_left": 0.08,
+    "margin_right": 0.08,
+    "margin_top": 0.05,
+    "margin_bottom": 0.05,
+    "line_height_multiplier": 1.2,
+    "paragraph_gap_lines": 0.35,
+    "characters_per_point_inch": 27.8
+  },
+  "archetypes": {
+    "cover_dark": {
+      "title": { "idx": 0, "mode": "fixed" },
+      "kicker": { "idx": 11, "mode": "fixed" },
+      "subtitle": { "idx": 2, "mode": "fixed" },
+      "abstract": { "idx": 3, "mode": "dynamic", "min_height": 0.35, "max_height": 0.9 }
+    },
+    "statement": {
+      "statement": { "idx": 0, "mode": "fixed" },
+      "kicker": { "idx": 11, "mode": "fixed" },
+      "support": { "idx": 2, "mode": "dynamic", "min_height": 0.4, "max_height": 1.65 }
+    },
+    "matrix": {
+      "title": { "idx": 0, "mode": "fixed" },
+      "kicker": { "idx": 11, "mode": "fixed" },
+      "q1_title": { "idx": 20, "mode": "fixed" },
+      "q1_items": { "idx": 21, "mode": "fixed" },
+      "q2_title": { "idx": 22, "mode": "fixed" },
+      "q2_items": { "idx": 23, "mode": "fixed" },
+      "q3_title": { "idx": 24, "mode": "fixed" },
+      "q3_items": { "idx": 25, "mode": "fixed" },
+      "q4_title": { "idx": 26, "mode": "fixed" },
+      "q4_items": { "idx": 27, "mode": "fixed" },
+      "vertical_axis": { "idx": 30, "mode": "fixed" },
+      "horizontal_axis": { "idx": 31, "mode": "fixed" }
+    },
+    "table": {
+      "title": { "idx": 0, "mode": "fixed" },
+      "kicker": { "idx": 11, "mode": "fixed" },
+      "intro": { "idx": 12, "mode": "dynamic", "min_height": 0.35, "max_height": 0.7 },
+      "callout": { "idx": 40, "mode": "dynamic", "min_height": 0.4, "max_height": 0.9 }
+    },
+    "chart": {
+      "title": { "idx": 0, "mode": "fixed" },
+      "kicker": { "idx": 11, "mode": "fixed" },
+      "lead_in": { "idx": 13, "mode": "dynamic", "min_height": 0.4, "max_height": 0.8 },
+      "takeaway": { "idx": 14, "mode": "dynamic", "min_height": 0.7, "max_height": 1.6 },
+      "source": { "idx": 41, "mode": "fixed" }
+    },
+    "image_right": {
+      "title": { "idx": 0, "mode": "fixed" },
+      "kicker": { "idx": 11, "mode": "fixed" },
+      "body": { "idx": 12, "mode": "dynamic", "min_height": 0.55, "max_height": 1.5 }
+    },
+    "process_flow": {
+      "title": { "idx": 0, "mode": "fixed" },
+      "kicker": { "idx": 11, "mode": "fixed" },
+      "step1_title": { "idx": 20, "mode": "fixed" },
+      "step1_body": { "idx": 21, "mode": "fixed" },
+      "step2_title": { "idx": 22, "mode": "fixed" },
+      "step2_body": { "idx": 23, "mode": "fixed" },
+      "step3_title": { "idx": 24, "mode": "fixed" },
+      "step3_body": { "idx": 25, "mode": "fixed" },
+      "step4_title": { "idx": 26, "mode": "fixed" },
+      "step4_body": { "idx": 27, "mode": "fixed" },
+      "note": { "idx": 40, "mode": "dynamic", "min_height": 0.35, "max_height": 0.6 }
+    },
+    "closing": {
+      "title": { "idx": 0, "mode": "fixed" },
+      "kicker": { "idx": 11, "mode": "fixed" },
+      "steps": { "idx": 12, "mode": "dynamic", "min_height": 0.8, "max_height": 1.8 },
+      "footer": { "idx": 13, "mode": "fixed" }
+    }
+  }
+}

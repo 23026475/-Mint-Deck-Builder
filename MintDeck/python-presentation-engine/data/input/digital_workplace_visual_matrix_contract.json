@@ -1,0 +1,202 @@
+{
+  "deck": {
+    "client": "Mint Leadership",
+    "title": "Digital Workplace Readiness",
+    "mode": "STAGE"
+  },
+  "slides": [
+    {
+      "archetype": "cover",
+      "fields": {
+        "title": "Digital Workplace Readiness",
+        "subtitle": "July operational review",
+        "kicker": "MINT LEADERSHIP"
+      }
+    },
+    {
+      "archetype": "thesis",
+      "action_title": "Readiness gaps create operational risk.",
+      "fields": {
+        "claims": [
+          "Incidents rose to 1120 in July",
+          "Compliance and deployment gaps remain"
+        ],
+        "pivot_question": "Which operational gaps should be addressed first?",
+        "verdict": "Target compliance, deployment, access and communication risks."
+      }
+    },
+    {
+      "archetype": "cards3",
+      "action_title": "Four risks concentrate into three operational themes.",
+      "fields": {
+        "kicker": "KEY RISKS",
+        "cards": [
+          {
+            "title": "Compliance gap",
+            "body": "273 devices remain non-compliant."
+          },
+          {
+            "title": "Deployment gap",
+            "body": "220 Acrobat deployments remain incomplete."
+          },
+          {
+            "title": "Operational delays",
+            "body": "Access delays and weak status updates persist."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "chart",
+      "action_title": "Incidents increased each month through July.",
+      "fields": {
+        "chart": {
+          "type": "column",
+          "title": "Monthly incidents",
+          "categories": [
+            "Apr",
+            "May",
+            "Jun",
+            "Jul"
+          ],
+          "series": [
+            {
+              "name": "Incidents",
+              "values": [
+                820,
+                910,
+                1040,
+                1120
+              ]
+            }
+          ]
+        },
+        "takeaway": "1120 incidents in July was the highest reported monthly volume."
+      }
+    },
+    {
+      "archetype": "table",
+      "action_title": "July metrics show uneven operational readiness.",
+      "fields": {
+        "table": {
+          "headers": [
+            "Metric",
+            "July result"
+          ],
+          "rows": [
+            [
+              "First-contact resolution",
+              "68%"
+            ],
+            [
+              "Compliant devices",
+              "967 of 1240"
+            ],
+            [
+              "Acrobat deployed",
+              "1020 of 1240"
+            ],
+            [
+              "Median access completion",
+              "14 hours"
+            ],
+            [
+              "Satisfaction",
+              "3.7/5"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "archetype": "image_right",
+      "action_title": "Operational discipline remains the primary readiness proposal.",
+      "fields": {
+        "kicker": "PROPOSALS",
+        "body": "Proposals focus on closing compliance gaps, completing deployments, reducing access delays and improving status updates.",
+        "picture": "FY27 People Collaborating & Corporate (70).jpg"
+      }
+    },
+    {
+      "archetype": "matrix",
+      "action_title": "Risks can be prioritized by impact and readiness.",
+      "fields": {
+        "kicker": "PRIORITIZATION",
+        "vertical_axis": "Business impact",
+        "horizontal_axis": "Delivery readiness",
+        "quadrants": [
+          {
+            "title": "Immediate focus",
+            "items": [
+              "273 non-compliant devices",
+              "Access delays"
+            ]
+          },
+          {
+            "title": "Build next",
+            "items": [
+              "220 incomplete deployments"
+            ]
+          },
+          {
+            "title": "Monitor",
+            "items": [
+              "Satisfaction 3.7/5"
+            ]
+          },
+          {
+            "title": "Later consideration",
+            "items": [
+              "Weak status updates"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "quote",
+      "fields": {
+        "quote": "Current results show deployment activity, while operational risks remain unresolved.",
+        "attribution": "Operational Readiness Review",
+        "role": "Validation scenario",
+        "headshot": "FY27 People Collaborating & Corporate (69).JPG"
+      }
+    },
+    {
+      "archetype": "process_flow",
+      "action_title": "Four actions can address the identified gaps.",
+      "fields": {
+        "steps": [
+          {
+            "title": "Remediate compliance",
+            "body": "Address non-compliant devices."
+          },
+          {
+            "title": "Complete deployment",
+            "body": "Finish remaining Acrobat deployments."
+          },
+          {
+            "title": "Accelerate access",
+            "body": "Reduce completion delays."
+          },
+          {
+            "title": "Improve updates",
+            "body": "Strengthen status communication."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "closing",
+      "action_title": "Proposed next steps target the highest-priority gaps.",
+      "fields": {
+        "steps": [
+          "Proposal: remediate non-compliant devices",
+          "Proposal: complete remaining deployments",
+          "Proposal: reduce access delays",
+          "Proposal: improve status updates"
+        ]
+      }
+    }
+  ]
+}

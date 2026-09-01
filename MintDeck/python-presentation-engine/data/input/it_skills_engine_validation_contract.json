@@ -1,0 +1,202 @@
+{
+  "deck": {
+    "client": "Mint Management Technologies",
+    "title": "IT Skills Landscape: Building Capability for the AI-Ready Enterprise",
+    "mode": "STAGE"
+  },
+  "slides": [
+    {
+      "archetype": "cover_dark",
+      "fields": {
+        "kicker": "AI-READY ENTERPRISE",
+        "title": "IT Skills Landscape",
+        "subtitle": "Building Capability for the AI-Ready Enterprise",
+        "abstract": "From foundational infrastructure skills to data, automation and AI"
+      }
+    },
+    {
+      "archetype": "statement",
+      "action_title": "IT capability is expanding from infrastructure into data and AI",
+      "fields": {
+        "kicker": "EXECUTIVE OVERVIEW",
+        "statement": "Build a balanced skills portfolio that keeps the core stable while growing AI capability."      }
+    },
+    {
+      "archetype": "matrix",
+      "action_title": "Core IT skills now span five capability areas",
+      "fields": {
+        "kicker": "IT SKILLS LANDSCAPE",
+        "quadrants": [
+          {
+            "title": "Infrastructure & Cloud",
+            "items": [
+              "Azure",
+              "Networking",
+              "Identity and security",
+              "Infrastructure automation"
+            ]
+          },
+          {
+            "title": "Software Engineering",
+            "items": [
+              "Python",
+              "C#",
+              "Git",
+              "APIs"
+            ]
+          },
+          {
+            "title": "Data Engineering",
+            "items": [
+              "SQL",
+              "Python",
+              "Data pipelines",
+              "Data modelling"
+            ]
+          },
+          {
+            "title": "Analytics, Automation & AI",
+            "items": [
+              "Power BI",
+              "Power Automate",
+              "AI services",
+              "Machine learning basics"
+            ]
+          }
+        ],
+        "vertical_axis": "Foundation to intelligence",
+        "horizontal_axis": "Operational to transformational"
+      }
+    },
+    {
+      "archetype": "table",
+      "action_title": "Capability areas require different technical foundations",
+      "fields": {
+        "kicker": "TABLE HANDLER TEST",
+        "intro": "Structured table data is routed through the existing media pipeline.",
+        "table": {
+          "headers": [
+            "Capability",
+            "Core skills",
+            "Typical tools",
+            "Primary outcome"
+          ],
+          "rows": [
+            [
+              "Infrastructure & Cloud",
+              "Cloud platforms, networking, infrastructure",
+              "Azure, AWS, Terraform",
+              "Scalable infrastructure"
+            ],
+            [
+              "Software Engineering",
+              "Programming, APIs, application development",
+              "Python, C#, Git",
+              "Software delivery"
+            ],
+            [
+              "Data Engineering",
+              "Pipelines, databases, data modelling",
+              "SQL, Python, ADF",
+              "Reliable data"
+            ],
+            [
+              "Analytics & Automation",
+              "BI, automation, reporting",
+              "Power BI, Power Automate",
+              "Operational insight"
+            ],
+            [
+              "AI & Machine Learning",
+              "ML, AI systems, model integration",
+              "Python, AI services",
+              "Intelligent solutions"
+            ]
+          ]
+        },
+        "callout": "This validates TableHandler insertion using existing placeholder geometry."
+      }
+    },
+    {
+      "archetype": "chart",
+      "action_title": "Capability maturity increases as skills move toward data and AI",
+      "fields": {
+        "kicker": "CHART HANDLER TEST",
+        "lead_in": "Chart demonstrates category and series rendering.",
+        "chart": {
+          "type": "column",
+          "title": "Illustrative Capability Maturity",
+          "categories": [
+            "Infrastructure & Cloud",
+            "Software Engineering",
+            "Data Engineering",
+            "Analytics & Automation",
+            "AI & Machine Learning"
+          ],
+          "series": [
+            {
+              "name": "Illustrative maturity",
+              "values": [
+                80,
+                70,
+                60,
+                50,
+                40
+              ]
+            }
+          ]
+        },
+        "takeaway": "Illustrative validation data only; not external research or measured industry statistics.",
+        "source": "Illustrative validation data"
+      }
+    },
+    {
+      "archetype": "image_right",
+      "action_title": "Technology capability is ultimately enabled by people",
+      "fields": {
+        "kicker": "IMAGE HANDLER TEST",
+        "body": "Capability grows when teams combine engineering discipline, shared learning and practical collaboration. This slide validates ImageCatalog resolution, ImagePlaceholderMapper mapping and ImageHandler insertion.",
+        "picture": "FY27 People Collaborating & Corporate (70).jpg"
+      }
+    },
+    {
+      "archetype": "process_flow",
+      "action_title": "Technology capability connects across the delivery lifecycle",
+      "fields": {
+        "kicker": "PROCESS FLOW TEST",
+        "steps": [
+          {
+            "title": "Infrastructure",
+            "body": "Reliable platforms and secure access"
+          },
+          {
+            "title": "Software",
+            "body": "Applications and services built with engineering discipline"
+          },
+          {
+            "title": "Data & Analytics",
+            "body": "Trusted data flows, reporting and insight"
+          },
+          {
+            "title": "AI & Business Value",
+            "body": "Intelligent workflows that improve outcomes"
+          }
+        ],
+        "note": "Uses the existing four-step process placeholder mapping."
+      }
+    },
+    {
+      "archetype": "closing",
+      "action_title": "Building the capability to move from technology to intelligence",
+      "fields": {
+        "kicker": "CLOSING TEST",
+        "steps": [
+          "Building technology capability creates the foundation for moving from technology to intelligence.",
+          "Strong foundations across infrastructure, software, data and analytics enable AI-ready delivery.",
+          "Continue expanding the engine's media capabilities."
+        ],
+        "footer": "Full engine validation scenario"
+      }
+    }
+  ]
+}

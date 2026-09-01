@@ -1,0 +1,169 @@
+{
+  "deck": {
+    "client": "Mint Leadership",
+    "title": "Digital Workplace Readiness",
+    "mode": "STAGE"
+  },
+  "slides": [
+    {
+      "archetype": "cover",
+      "fields": {
+        "title": "Digital Workplace Readiness",
+        "subtitle": "July operational assessment for Mint Leadership",
+        "kicker": "DIGITAL WORKPLACE REVIEW"
+      }
+    },
+    {
+      "archetype": "thesis",
+      "action_title": "Readiness gaps create operational risk.",
+      "fields": {
+        "claims": [
+          "Incident volumes increased from 820 in April to 1120 in July.",
+          "Compliance, deployment and access gaps remain unresolved."
+        ],
+        "pivot_question": "Which actions should be prioritized to reduce operational risk?",
+        "verdict": "Targeted remediation proposals should focus on compliance, deployment, access and communication."
+      }
+    },
+    {
+      "archetype": "cards3",
+      "action_title": "Four metrics highlight current readiness constraints.",
+      "fields": {
+        "kicker": "CURRENT STATE",
+        "cards": [
+          {
+            "title": "Device Compliance",
+            "body": "967 of 1240 devices are compliant. 273 devices remain non-compliant."
+          },
+          {
+            "title": "Acrobat Deployment",
+            "body": "1020 of 1240 deployments are complete. 220 deployments remain incomplete."
+          },
+          {
+            "title": "Service Performance",
+            "body": "First-contact resolution is 68%, median access completion is 14 hours and satisfaction is 3.7/5."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "chart",
+      "action_title": "Incident volumes increased across four consecutive months.",
+      "fields": {
+        "chart": {
+          "type": "column",
+          "title": "Monthly Incidents",
+          "categories": [
+            "Apr",
+            "May",
+            "Jun",
+            "Jul"
+          ],
+          "series": [
+            {
+              "name": "Incidents",
+              "values": [
+                820,
+                910,
+                1040,
+                1120
+              ]
+            }
+          ]
+        },
+        "takeaway": "1120 incidents in July was the highest reported monthly volume."
+      }
+    },
+    {
+      "archetype": "table",
+      "action_title": "July results show mixed readiness outcomes.",
+      "fields": {
+        "table": {
+          "headers": [
+            "Metric",
+            "Result"
+          ],
+          "rows": [
+            [
+              "First-contact resolution",
+              "68%"
+            ],
+            [
+              "Compliant devices",
+              "967 of 1240"
+            ],
+            [
+              "Acrobat deployed",
+              "1020 of 1240"
+            ],
+            [
+              "Median access completion",
+              "14 hours"
+            ],
+            [
+              "User satisfaction",
+              "3.7/5"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "archetype": "cards3",
+      "action_title": "Four risks require focused remediation proposals.",
+      "fields": {
+        "kicker": "RISKS AND PROPOSALS",
+        "cards": [
+          {
+            "title": "Compliance Risk",
+            "body": "273 devices remain non-compliant. Proposal: prioritize remediation of outstanding devices."
+          },
+          {
+            "title": "Deployment Risk",
+            "body": "220 deployments remain incomplete. Proposal: accelerate completion of remaining deployments."
+          },
+          {
+            "title": "Service Risk",
+            "body": "Access delays and weak status updates persist. Proposal: improve workflow visibility and communication."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "process_flow",
+      "action_title": "A four-step plan can address current gaps.",
+      "fields": {
+        "steps": [
+          {
+            "title": "Remediate Compliance",
+            "body": "Address outstanding non-compliant devices."
+          },
+          {
+            "title": "Complete Deployments",
+            "body": "Finish remaining Acrobat deployments."
+          },
+          {
+            "title": "Improve Access",
+            "body": "Reduce access completion delays."
+          },
+          {
+            "title": "Strengthen Updates",
+            "body": "Provide clearer status communications."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "closing",
+      "action_title": "Leadership alignment can accelerate readiness improvements.",
+      "fields": {
+        "steps": [
+          "Review readiness gaps",
+          "Prioritize remediation proposals",
+          "Track operational metrics",
+          "Monitor risk reduction"
+        ]
+      }
+    }
+  ]
+}

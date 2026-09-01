@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "description": "Data-driven content ceilings for approved presentation placeholders. These rules are evaluated before rendering and must not rely on PowerPoint autofit.",
+  "units": "inches",
+  "estimation": {
+    "line_height_inches": 0.24,
+    "characters_per_inch": {
+      "14pt_lato": 28,
+      "11pt_lato": 35
+    }
+  },
+  "defaults": {
+    "overflow_action": "reject",
+    "emit_warning": true,
+    "allow_powerpoint_autofit": false
+  },
+  "content_limits": {
+    "card_title": {
+      "content_kind": "prose",
+      "max_lines": 1,
+      "overflow_action": "reject"
+    },
+    "card_body": {
+      "content_kind": "prose",
+      "max_lines": 5,
+      "overflow_action": "reject"
+    },
+    "process_title": {
+      "content_kind": "prose",
+      "max_lines": 1,
+      "overflow_action": "reject"
+    },
+    "process_body": {
+      "content_kind": "prose",
+      "max_lines": 4,
+      "overflow_action": "reject"
+    },
+    "comparison_body": {
+      "content_kind": "list_or_prose",
+      "recommended_max_lines": 5,
+      "max_lines": 6,
+      "overflow_action": "reject"
+    },
+    "case_study_column": {
+      "content_kind": "prose",
+      "max_lines": 5,
+      "overflow_action": "reject"
+    },
+    "thesis_claim": {
+      "content_kind": "prose",
+      "max_lines": 2,
+      "overflow_action": "reject"
+    },
+    "kpi_label": {
+      "content_kind": "prose",
+      "max_lines": 2,
+      "overflow_action": "reject"
+    },
+    "statement_support": {
+      "content_kind": "prose",
+      "max_lines": 1,
+      "max_characters": 95,
+      "overflow_action": "reject"
+    },
+    "table": {
+      "content_kind": "table",
+      "max_total_rows": 10,
+      "overflow_action": "reject"
+    }
+  },
+  "archetype_placeholders": {
+    "cards3": {
+      "card1_title": { "idx": 20, "limit": "card_title" },
+      "card1_body": { "idx": 21, "limit": "card_body" },
+      "card2_title": { "idx": 22, "limit": "card_title" },
+      "card2_body": { "idx": 23, "limit": "card_body" },
+      "card3_title": { "idx": 24, "limit": "card_title" },
+      "card3_body": { "idx": 25, "limit": "card_body" }
+    },
+    "process_flow": {
+      "step1_title": { "idx": 20, "limit": "process_title" },
+      "step1_body": { "idx": 21, "limit": "process_body" },
+      "step2_title": { "idx": 22, "limit": "process_title" },
+      "step2_body": { "idx": 23, "limit": "process_body" },
+      "step3_title": { "idx": 24, "limit": "process_title" },
+      "step3_body": { "idx": 25, "limit": "process_body" },
+      "step4_title": { "idx": 26, "limit": "process_title" },
+      "step4_body": { "idx": 27, "limit": "process_body" }
+    },
+    "comparison": {
+      "left_points": { "idx": 21, "limit": "comparison_body" },
+      "right_points": { "idx": 23, "limit": "comparison_body" }
+    },
+    "case_study": {
+      "challenge": { "idx": 20, "limit": "case_study_column" },
+      "approach": { "idx": 21, "limit": "case_study_column" },
+      "outcome": { "idx": 22, "limit": "case_study_column" }
+    },
+    "thesis": {
+      "claim1": { "idx": 20, "limit": "thesis_claim" },
+      "claim2": { "idx": 21, "limit": "thesis_claim" }
+    },
+    "kpi": {
+      "stat1_label": { "idx": 21, "limit": "kpi_label" },
+      "stat2_label": { "idx": 23, "limit": "kpi_label" },
+      "stat3_label": { "idx": 25, "limit": "kpi_label" },
+      "stat4_label": { "idx": 27, "limit": "kpi_label" }
+    },
+    "statement": {
+      "support": { "idx": 2, "limit": "statement_support" }
+    },
+    "table": {
+      "table": { "idx": 10, "limit": "table" }
+    }
+  }
+}

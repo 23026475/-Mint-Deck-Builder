@@ -1,0 +1,42 @@
+{
+  "deck": {
+    "client": "Contoso Manufacturing",
+    "title": "Table Handler E2E Validation",
+    "mode": "STAGE"
+  },
+  "slides": [
+    {
+      "archetype": "table",
+      "action_title": "Table Handler validates structured data",
+      "fields": {
+        "kicker": "TABLE VALIDATION",
+        "intro": "This slide validates table insertion through the media pipeline.",
+        "table": {
+          "headers": [
+            "Capability",
+            "Status",
+            "Notes"
+          ],
+          "rows": [
+            [
+              "ImageHandler",
+              "Complete",
+              "Images render in the generated deck"
+            ],
+            [
+              "TableHandler",
+              "In validation",
+              "Structured rows and columns are inserted"
+            ],
+            [
+              "ChartHandler",
+              "Next",
+              "Not started in this milestone"
+            ]
+          ]
+        },
+        "callout": "TableHandler validates structured table population."
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+__pycache__/
+*.pyc
+.venv/
+data/output/*.pptx
+data/output/~$*.pptx
+data/output/*_report.json
+data/output/image_e2e_validation_report.json
+data/output/image_e2e_contract_inspection_report.json
+
+# Python environment and caches
+.venv/
+__pycache__/
+*.pyc
+
+# SharePoint-managed image binaries
+data/assets/images/*
+!data/assets/images/images.json
+
+# Generated and temporary runtime files
+data/output/
+data/work/
+logs/
+
+# Generated presentations and local templates
+*.pptx
+*.potx
+
+# Recovery bundles, diagnostics and backups
+*.zip
+*.bak
+project_architecture.txt
+text-rendering-files.txt
+
+# Temporary generic wrappers
+Run-MiniDeck-E2E.ps1
+run_e2e.py
+data/input/input.json
+
+# Local external image test
+data/assets/images/CLIMATE_CHANGE_NOAA_TEST.jpg

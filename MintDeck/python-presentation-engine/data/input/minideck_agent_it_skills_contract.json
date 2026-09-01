@@ -1,0 +1,173 @@
+{
+  "deck": {
+    "client": "Mint Leadership",
+    "title": "IT Skills Capability Portfolio",
+    "mode": "READ"
+  },
+  "slides": [
+    {
+      "archetype": "cover",
+      "fields": {
+        "title": "IT Skills Capability Portfolio",
+        "subtitle": "Aligning technology capabilities for stronger delivery and future readiness",
+        "kicker": "MINT LEADERSHIP"
+      }
+    },
+    {
+      "archetype": "statement",
+      "action_title": "Integrated digital skills accelerate delivery and strengthen future readiness.",
+      "fields": {
+        "kicker": "THE SHIFT",
+        "statement": "Cloud, engineering, data, analytics and AI capabilities create greater business value together."
+      }
+    },
+    {
+      "archetype": "table",
+      "action_title": "Five technology capabilities form the foundation of modern delivery.",
+      "fields": {
+        "table": {
+          "headers": [
+            "Capability Area",
+            "Primary Focus"
+          ],
+          "rows": [
+            [
+              "Infrastructure and Cloud",
+              "Platforms, hosting, networking and cloud operations"
+            ],
+            [
+              "Software Engineering",
+              "Application development, DevOps and product delivery"
+            ],
+            [
+              "Data Engineering",
+              "Data platforms, pipelines and governance"
+            ],
+            [
+              "Analytics and Automation",
+              "Insights, reporting and process automation"
+            ],
+            [
+              "AI and Machine Learning",
+              "Predictive models, intelligent systems and AI solutions"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "archetype": "table",
+      "action_title": "Each capability area contributes distinct delivery outcomes.",
+      "fields": {
+        "table": {
+          "headers": [
+            "Capability",
+            "Core Skills",
+            "Business Value"
+          ],
+          "rows": [
+            [
+              "Infrastructure and Cloud",
+              "Cloud platforms, networking",
+              "Reliable scalable services"
+            ],
+            [
+              "Software Engineering",
+              "Development, DevOps",
+              "Faster solution delivery"
+            ],
+            [
+              "Data Engineering",
+              "Data pipelines, governance",
+              "Trusted enterprise data"
+            ],
+            [
+              "Analytics and Automation",
+              "BI, automation",
+              "Improved efficiency"
+            ],
+            [
+              "AI and Machine Learning",
+              "AI, modelling",
+              "Intelligent decision-making"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "archetype": "chart",
+      "action_title": "AI and cloud capabilities lead current demand.",
+      "fields": {
+        "chart": {
+          "type": "column",
+          "title": "Technology capability demand",
+          "categories": [
+            "Infrastructure and Cloud",
+            "Software Engineering",
+            "Data Engineering",
+            "Analytics and Automation",
+            "AI and Machine Learning"
+          ],
+          "series": [
+            {
+              "name": "Demand",
+              "values": [
+                92,
+                85,
+                78,
+                71,
+                98
+              ]
+            }
+          ]
+        },
+        "takeaway": "AI and Machine Learning shows the highest demand score at 98."
+      }
+    },
+    {
+      "archetype": "image_right",
+      "action_title": "Cloud-native teams improve speed, resilience and scalability.",
+      "fields": {
+        "kicker": "MODERN DELIVERY",
+        "body": "Cloud-native teams combine platform expertise, software engineering and automation practices to deliver faster releases, improve reliability and respond rapidly to changing business priorities."
+      }
+    },
+    {
+      "archetype": "process_flow",
+      "action_title": "Capability maturity grows through a structured development journey.",
+      "fields": {
+        "steps": [
+          {
+            "title": "Assess",
+            "body": "Evaluate current capability levels."
+          },
+          {
+            "title": "Learn",
+            "body": "Build targeted knowledge and skills."
+          },
+          {
+            "title": "Apply",
+            "body": "Use skills in delivery environments."
+          },
+          {
+            "title": "Optimise and Scale",
+            "body": "Improve outcomes and expand adoption."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "closing",
+      "action_title": "Leadership sponsorship will accelerate capability development.",
+      "fields": {
+        "steps": [
+          "Confirm priority capability investments",
+          "Align workforce development plans",
+          "Define capability targets",
+          "Establish a quarterly review cadence"
+        ]
+      }
+    }
+  ]
+}

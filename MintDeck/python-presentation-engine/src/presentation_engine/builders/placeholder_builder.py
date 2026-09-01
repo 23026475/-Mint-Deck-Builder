@@ -13,8 +13,8 @@ Important:
 - This module does not create slides.
 - This module does not select layouts.
 - This module does not create text boxes.
-- This module does not insert images, charts, tables, logos, or SmartArt yet.
-- Media placeholders are preserved for future handlers.
+- This module does not insert images, charts, tables, logos, or SmartArt.
+- Media placeholders are preserved for media handlers.
 """
 
 from __future__ import annotations
@@ -24,11 +24,14 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Mapping, Optional, Sequence
-from pptx.util import Inches, Pt
 
 from presentation_engine.config import EngineConfig, config
-
-from presentation_engine.handlers.media_handler import MediaHandler
+from presentation_engine.services.layout_policy import configure_text_frame
+from presentation_engine.services.text_box_layout import TextBoxLayoutPolicy
+from presentation_engine.services.placeholder_content_limits import (
+    PlaceholderContentLimitPolicy,
+    PlaceholderContentOverflowError,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -245,7 +248,16 @@ EXACT_MATCH_PLACEHOLDER_MAPPINGS: dict[str, list[PlaceholderDefinition]] = {
         PlaceholderDefinition("title", 0, "action_title"),
         PlaceholderDefinition("kicker", 11, "fields.kicker", required=False),
         PlaceholderDefinition("caption", 40, "fields.caption", required=False),
-        *[PlaceholderDefinition(f"logo{i}", 19 + i, f"fields.logos.{i - 1}", required=False, content_type="logo") for i in range(1, 9)],
+        *[
+            PlaceholderDefinition(
+                f"logo{i}",
+                19 + i,
+                f"fields.logos.{i - 1}",
+                required=False,
+                content_type="logo",
+            )
+            for i in range(1, 9)
+        ],
     ],
     "case_study": [
         PlaceholderDefinition("title", 0, "action_title"),
@@ -277,87 +289,266 @@ EXACT_MATCH_PLACEHOLDER_MAPPINGS: dict[str, list[PlaceholderDefinition]] = {
     ],
 }
 
+
 BASELINE_ID_TO_ARCHETYPE: dict[str, str] = {
-    "A01": "cover", "A02": "cover_dark", "B04": "image_right", "B05": "statement",
-    "B06": "quote", "B08": "comparison", "B09": "faq", "B10": "thesis",
-    "C01": "process_flow", "D01": "table", "D02": "chart", "D03": "kpi", "D05": "matrix",
-    "E01": "team", "E02": "org_chart", "E03": "logo_wall", "E04": "case_study",
-    "F01": "pricing_stat", "F02": "table", "G01": "summary_cta", "G02": "closing",
+    "A01": "cover",
+    "A02": "cover_dark",
+    "B04": "image_right",
+    "B05": "statement",
+    "B06": "quote",
+    "B08": "comparison",
+    "B09": "faq",
+    "B10": "thesis",
+    "C01": "process_flow",
+    "D01": "table",
+    "D02": "chart",
+    "D03": "kpi",
+    "D05": "matrix",
+    "E01": "team",
+    "E02": "org_chart",
+    "E03": "logo_wall",
+    "E04": "case_study",
+    "F01": "pricing_stat",
+    "F02": "table",
+    "G01": "summary_cta",
+    "G02": "closing",
 }
 
-SUPPORTED_ARCHETYPES: frozenset[str] = frozenset(EXACT_MATCH_PLACEHOLDER_MAPPINGS.keys()) | frozenset(key.lower() for key in BASELINE_ID_TO_ARCHETYPE.keys())
+
+SUPPORTED_ARCHETYPES: frozenset[str] = (
+    frozenset(EXACT_MATCH_PLACEHOLDER_MAPPINGS.keys())
+    | frozenset(key.lower() for key in BASELINE_ID_TO_ARCHETYPE.keys())
+)
 
 
 @dataclass
 class PlaceholderBuilder:
     engine_config: EngineConfig = field(default_factory=lambda: config)
     baseline_path: Optional[Path] = None
-    archetype_placeholders: Optional[dict[str, list[PlaceholderDefinition]]] = None
+    archetype_placeholders: Optional[
+        dict[str, list[PlaceholderDefinition]]
+    ] = None
     log: logging.Logger = field(default_factory=lambda: logger)
+    text_box_layout_policy: TextBoxLayoutPolicy = field(
+        default_factory=TextBoxLayoutPolicy
+    )
+    content_limit_policy: PlaceholderContentLimitPolicy = field(
+        default_factory=PlaceholderContentLimitPolicy
+    )
     cleanup_reports: list[dict[str, Any]] = field(default_factory=list)
     last_cleanup_report: dict[str, Any] = field(default_factory=dict)
 
-    def populate(self, slide: Any, slide_definition: Mapping[str, Any]) -> None:
-        archetype = self._canonical_archetype(self._read_archetype(slide_definition))
+    def populate(
+        self,
+        slide: Any,
+        slide_definition: Mapping[str, Any],
+    ) -> None:
+        archetype = self._canonical_archetype(
+            self._read_archetype(slide_definition)
+        )
         mappings = self._load_placeholder_definitions()
+
         if archetype not in mappings:
-            raise PlaceholderBuilderException(f"Unsupported archetype for placeholder population: '{archetype}'")
+            raise PlaceholderBuilderException(
+                f"Unsupported archetype for placeholder population: "
+                f"'{archetype}'"
+            )
+
         self._validate_slide_definition(archetype, slide_definition)
-        report: dict[str, Any] = {"archetype": archetype, "populated": [], "removed_unfilled_text": [], "removed_prompt_text": [], "preserved_media": [], "preserved_business_text": []}
-        filled_idx = self._populate_from_definitions(slide, slide_definition, archetype, mappings[archetype], report)
-        self._cleanup_after_population(slide, filled_idx, mappings[archetype], report)
+
+        report: dict[str, Any] = {
+            "archetype": archetype,
+            "populated": [],
+            "removed_unfilled_text": [],
+            "removed_prompt_text": [],
+            "preserved_media": [],
+            "preserved_business_text": [],
+        }
+
+        filled_idx = self._populate_from_definitions(
+            slide,
+            slide_definition,
+            archetype,
+            mappings[archetype],
+            report,
+        )
+
+        self._cleanup_after_population(
+            slide,
+            filled_idx,
+            mappings[archetype],
+            report,
+        )
+
         self.last_cleanup_report = report
         self.cleanup_reports.append(report)
 
-    def _validate_slide_definition(self, archetype: str, slide_definition: Mapping[str, Any]) -> None:
+    def _validate_slide_definition(
+        self,
+        archetype: str,
+        slide_definition: Mapping[str, Any],
+    ) -> None:
         if archetype == "cover_dark":
-            title = self._normalise_value(self._value_from_path(slide_definition, "fields.title"), "\n")
+            title = self._normalise_value(
+                self._value_from_path(slide_definition, "fields.title"),
+                "\n",
+            )
             if title is not None and len(title) > 45:
-                raise PlaceholderValidationException(f"cover_dark.fields.title must be 45 characters or fewer. Received {len(title)} characters.")
+                raise PlaceholderValidationException(
+                    "cover_dark.fields.title must be 45 characters or fewer. "
+                    f"Received {len(title)} characters."
+                )
+
         if archetype == "chart":
-            lead_in = self._first_available_string(slide_definition, ("fields.lead_in", "fields.lead-in", "fields.headline", "action_title"))
+            lead_in = self._first_available_string(
+                slide_definition,
+                (
+                    "fields.lead_in",
+                    "fields.lead-in",
+                    "fields.headline",
+                    "action_title",
+                ),
+            )
             if lead_in is not None and len(lead_in) > 60:
-                raise PlaceholderValidationException(f"chart lead-in must be 60 characters or fewer. Received {len(lead_in)} characters.")
-            takeaway = self._first_available_string(slide_definition, ("fields.takeaway", "fields.takeaway_body", "fields.body"))
+                raise PlaceholderValidationException(
+                    "chart lead-in must be 60 characters or fewer. "
+                    f"Received {len(lead_in)} characters."
+                )
+
+            takeaway = self._first_available_string(
+                slide_definition,
+                (
+                    "fields.takeaway",
+                    "fields.takeaway_body",
+                    "fields.body",
+                ),
+            )
             if takeaway is not None:
                 word_count = self._word_count(takeaway)
                 if word_count > 25:
-                    raise PlaceholderValidationException(f"chart takeaway body must be 25 words or fewer. Received {word_count} words.")
+                    raise PlaceholderValidationException(
+                        "chart takeaway body must be 25 words or fewer. "
+                        f"Received {word_count} words."
+                    )
 
-    def _load_placeholder_definitions(self) -> dict[str, list[PlaceholderDefinition]]:
-        return self.archetype_placeholders if self.archetype_placeholders is not None else EXACT_MATCH_PLACEHOLDER_MAPPINGS
+    def _load_placeholder_definitions(
+        self,
+    ) -> dict[str, list[PlaceholderDefinition]]:
+        if self.archetype_placeholders is not None:
+            return self.archetype_placeholders
+        return EXACT_MATCH_PLACEHOLDER_MAPPINGS
 
-    def _populate_from_definitions(self, slide: Any, slide_definition: Mapping[str, Any], archetype: str, definitions: list[PlaceholderDefinition], report: dict[str, Any]) -> set[int]:
+    def _populate_from_definitions(
+        self,
+        slide: Any,
+        slide_definition: Mapping[str, Any],
+        archetype: str,
+        definitions: list[PlaceholderDefinition],
+        report: dict[str, Any],
+    ) -> set[int]:
         filled_idx: set[int] = set()
+
         for definition in definitions:
-            value = self._value_from_path(slide_definition, definition.source)
-            text = self._normalise_value(value, definition.join_with)
+            value = self._value_from_path(
+                slide_definition,
+                definition.source,
+            )
+            text = self._normalise_value(
+                value,
+                definition.join_with,
+            )
+
             if definition.is_media:
                 if self._placeholder_by_idx(slide).get(definition.idx) is not None:
-                    report["preserved_media"].append({"idx": definition.idx, "name": definition.name, "content_type": definition.content_type, "reason": "reserved for future media handler"})
+                    report["preserved_media"].append(
+                        {
+                            "idx": definition.idx,
+                            "name": definition.name,
+                            "content_type": definition.content_type,
+                            "reason": "reserved for future media handler",
+                        }
+                    )
+
                 if definition.required and text is None:
-                    raise PlaceholderBuilderException(f"Missing required media value for {archetype}.{definition.name} from source '{definition.source}'.")
+                    raise PlaceholderBuilderException(
+                        f"Missing required media value for "
+                        f"{archetype}.{definition.name} from source "
+                        f"'{definition.source}'."
+                    )
                 continue
+
             if text is None:
                 if definition.required:
-                    raise PlaceholderBuilderException(f"Missing required value for {archetype}.{definition.name} from source '{definition.source}'.")
+                    raise PlaceholderBuilderException(
+                        f"Missing required value for "
+                        f"{archetype}.{definition.name} from source "
+                        f"'{definition.source}'."
+                    )
                 continue
-            text = self._prepare_text_for_rendering(archetype, definition, text)
-            self._fill_text_placeholder(slide, archetype, definition, text, filled_idx, report)
+
+            text = self._prepare_text_for_rendering(
+                archetype,
+                definition,
+                text,
+            )
+
+            self._enforce_content_limit_before_render(
+                archetype,
+                definition,
+                text,
+            )
+
+            self._fill_text_placeholder(
+                slide,
+                archetype,
+                definition,
+                text,
+                filled_idx,
+                report,
+            )
+
         return filled_idx
 
-    def _prepare_text_for_rendering(self, archetype: str, definition: PlaceholderDefinition, text: str) -> str:
-        # Preserve contract text and template wrapping behavior.
-        # Do not insert manual line breaks or alter rendering behavior.
+    def _enforce_content_limit_before_render(
+        self,
+        archetype: str,
+        definition: PlaceholderDefinition,
+        text: str,
+    ) -> None:
+        """Reject configured content overflow before any placeholder mutation."""
+
+        try:
+            self.content_limit_policy.validate_or_raise(
+                archetype,
+                definition.name,
+                text,
+            )
+        except PlaceholderContentOverflowError as exc:
+            raise PlaceholderValidationException(str(exc)) from exc
+
+    def _prepare_text_for_rendering(
+        self,
+        archetype: str,
+        definition: PlaceholderDefinition,
+        text: str,
+    ) -> str:
+        if archetype == "summary_cta" and definition.name == "cta":
+            return self._wrap_text_at_word_boundary(text, 26)
         return text
 
-    def _wrap_text_at_word_boundary(self, text: str, max_line_length: int) -> str:
+    def _wrap_text_at_word_boundary(
+        self,
+        text: str,
+        max_line_length: int,
+    ) -> str:
         normalized = " ".join((text or "").split())
         if len(normalized) <= max_line_length:
             return normalized
+
         words = normalized.split(" ")
         lines: list[str] = []
         current_line: list[str] = []
+
         for word in words:
             candidate = " ".join([*current_line, word]).strip()
             if current_line and len(candidate) > max_line_length:
@@ -365,8 +556,10 @@ class PlaceholderBuilder:
                 current_line = [word]
             else:
                 current_line.append(word)
+
         if current_line:
             lines.append(" ".join(current_line))
+
         return "\n".join(lines)
 
     def _fill_text_placeholder(
@@ -382,19 +575,68 @@ class PlaceholderBuilder:
 
         if placeholder is None:
             if definition.required:
-                raise PlaceholderBuilderException(f"Required placeholder idx {definition.idx} was not found on the slide.")
-            raise PlaceholderBuilderException(f"Optional field supplied but placeholder idx {definition.idx} was not found.")
+                raise PlaceholderBuilderException(
+                    f"Required placeholder idx {definition.idx} "
+                    "was not found on the slide."
+                )
+
+            raise PlaceholderBuilderException(
+                f"Optional field supplied but placeholder idx "
+                f"{definition.idx} was not found."
+            )
 
         if not getattr(placeholder, "has_text_frame", True):
-            raise PlaceholderBuilderException(f"Placeholder idx {definition.idx} exists but is not text-capable.")
+            raise PlaceholderBuilderException(
+                f"Placeholder idx {definition.idx} exists "
+                "but is not text-capable."
+            )
 
         text_frame_state = self._capture_text_frame_properties(placeholder)
+
         placeholder.text = value
-        self._restore_text_frame_properties(placeholder, text_frame_state)
-        self._apply_text_fit(archetype, definition, placeholder)
+
+        self._restore_text_frame_properties(
+            placeholder,
+            text_frame_state,
+        )
+
+        configure_text_frame(placeholder)
+
+        layout_result = self.text_box_layout_policy.apply(
+            placeholder,
+            archetype=archetype,
+            placeholder_name=definition.name,
+            text=value,
+        )
+
+        self._apply_text_fit(
+            archetype,
+            definition,
+            placeholder,
+        )
 
         filled_idx.add(definition.idx)
-        report["populated"].append({"idx": definition.idx, "name": definition.name, "source": definition.source})
+
+        populated_entry: dict[str, Any] = {
+            "idx": definition.idx,
+            "name": definition.name,
+            "source": definition.source,
+        }
+
+        if layout_result is not None:
+            populated_entry["text_box_layout"] = {
+                "estimated_lines": layout_result.estimated_lines,
+                "estimated_height_inches": round(
+                    layout_result.estimated_height_inches,
+                    3,
+                ),
+                "applied_height_inches": round(
+                    layout_result.applied_height_inches,
+                    3,
+                ),
+            }
+
+        report["populated"].append(populated_entry)
 
     def _apply_text_fit(
         self,
@@ -402,28 +644,39 @@ class PlaceholderBuilder:
         definition: PlaceholderDefinition,
         placeholder: Any,
     ) -> None:
-        # Preserve template geometry and text-frame settings.
-        # This method intentionally performs no changes.
+        # Preserve template typography. Content ceilings and explicitly dynamic
+        # placeholder-height rules are enforced by separate policies.
         return
 
-    def _capture_text_frame_properties(self, placeholder: Any) -> dict[str, Any]:
+    def _capture_text_frame_properties(
+        self,
+        placeholder: Any,
+    ) -> dict[str, Any]:
         if not hasattr(placeholder, "text_frame"):
             return {}
+
         if not getattr(placeholder, "has_text_frame", False):
             return {}
 
         text_frame = placeholder.text_frame
         paragraph_states = []
+
         for paragraph in list(getattr(text_frame, "paragraphs", []) or []):
             font = getattr(paragraph, "font", None)
-            paragraph_states.append({
-                "alignment": getattr(paragraph, "alignment", None),
-                "level": getattr(paragraph, "level", None),
-                "space_before": getattr(paragraph, "space_before", None),
-                "space_after": getattr(paragraph, "space_after", None),
-                "line_spacing": getattr(paragraph, "line_spacing", None),
-                "font_size": getattr(font, "size", None) if font is not None else None,
-            })
+            paragraph_states.append(
+                {
+                    "alignment": getattr(paragraph, "alignment", None),
+                    "level": getattr(paragraph, "level", None),
+                    "space_before": getattr(paragraph, "space_before", None),
+                    "space_after": getattr(paragraph, "space_after", None),
+                    "line_spacing": getattr(paragraph, "line_spacing", None),
+                    "font_size": (
+                        getattr(font, "size", None)
+                        if font is not None
+                        else None
+                    ),
+                }
+            )
 
         return {
             "word_wrap": getattr(text_frame, "word_wrap", None),
@@ -436,64 +689,153 @@ class PlaceholderBuilder:
             "paragraphs": paragraph_states,
         }
 
-    def _restore_text_frame_properties(self, placeholder: Any, state: dict[str, Any]) -> None:
+    def _restore_text_frame_properties(
+        self,
+        placeholder: Any,
+        state: dict[str, Any],
+    ) -> None:
         if not state:
             return
+
         if not hasattr(placeholder, "text_frame"):
             return
+
         if not getattr(placeholder, "has_text_frame", False):
             return
 
         text_frame = placeholder.text_frame
-        for name in ("word_wrap", "auto_size", "vertical_anchor", "margin_left", "margin_right", "margin_top", "margin_bottom"):
+
+        for name in (
+            "word_wrap",
+            "auto_size",
+            "vertical_anchor",
+            "margin_left",
+            "margin_right",
+            "margin_top",
+            "margin_bottom",
+        ):
             try:
                 setattr(text_frame, name, state.get(name))
-            except Exception:
-                pass
+            except (AttributeError, TypeError, ValueError):
+                self.log.debug(
+                    "Could not restore text-frame property %s",
+                    name,
+                    exc_info=True,
+                )
 
         paragraph_states = state.get("paragraphs") or []
         paragraphs = list(getattr(text_frame, "paragraphs", []) or [])
+
         if not paragraphs or not paragraph_states:
             return
 
         template_paragraph = paragraph_states[0]
+
         for paragraph in paragraphs:
-            for name in ("alignment", "level", "space_before", "space_after", "line_spacing"):
+            for name in (
+                "alignment",
+                "level",
+                "space_before",
+                "space_after",
+                "line_spacing",
+            ):
                 try:
                     setattr(paragraph, name, template_paragraph.get(name))
-                except Exception:
-                    pass
+                except (AttributeError, TypeError, ValueError):
+                    self.log.debug(
+                        "Could not restore paragraph property %s",
+                        name,
+                        exc_info=True,
+                    )
+
             font_size = template_paragraph.get("font_size")
             if font_size is not None:
                 try:
                     paragraph.font.size = font_size
-                except Exception:
-                    pass
+                except (AttributeError, TypeError, ValueError):
+                    self.log.debug(
+                        "Could not restore paragraph font size",
+                        exc_info=True,
+                    )
 
-    def _cleanup_after_population(self, slide: Any, filled_idx: set[int], definitions: list[PlaceholderDefinition], report: dict[str, Any]) -> None:
-        media_idx = {definition.idx for definition in definitions if definition.is_media}
+    def _cleanup_after_population(
+        self,
+        slide: Any,
+        filled_idx: set[int],
+        definitions: list[PlaceholderDefinition],
+        report: dict[str, Any],
+    ) -> None:
+        media_idx = {
+            definition.idx
+            for definition in definitions
+            if definition.is_media
+        }
+
         for shape in self._iter_cleanup_shapes(slide):
             idx = self._placeholder_idx(shape)
             text = self._shape_text(shape)
+
             if idx in filled_idx:
                 continue
+
             if idx in media_idx or self._is_media_placeholder(shape):
-                report["preserved_media"].append({"idx": idx, "name": self._shape_name(shape), "content_type": "media", "reason": "media placeholder preserved"})
+                report["preserved_media"].append(
+                    {
+                        "idx": idx,
+                        "name": self._shape_name(shape),
+                        "content_type": "media",
+                        "reason": "media placeholder preserved",
+                    }
+                )
                 continue
+
             if not getattr(shape, "has_text_frame", False):
                 continue
+
             if self._is_placeholder(shape):
                 self._remove_shape(shape)
-                key = "removed_prompt_text" if self._is_default_prompt_text(text) else "removed_unfilled_text"
-                reason = "default prompt text" if key == "removed_prompt_text" else "unfilled text placeholder"
-                report[key].append({"idx": idx, "name": self._shape_name(shape), "text": text, "reason": reason})
+                key = (
+                    "removed_prompt_text"
+                    if self._is_default_prompt_text(text)
+                    else "removed_unfilled_text"
+                )
+                reason = (
+                    "default prompt text"
+                    if key == "removed_prompt_text"
+                    else "unfilled text placeholder"
+                )
+                report[key].append(
+                    {
+                        "idx": idx,
+                        "name": self._shape_name(shape),
+                        "text": text,
+                        "reason": reason,
+                    }
+                )
                 continue
+
             if self._is_default_prompt_text(text):
                 self._remove_shape(shape)
-                report["removed_prompt_text"].append({"idx": idx, "name": self._shape_name(shape), "text": text, "reason": "default prompt text on non-placeholder shape"})
+                report["removed_prompt_text"].append(
+                    {
+                        "idx": idx,
+                        "name": self._shape_name(shape),
+                        "text": text,
+                        "reason": (
+                            "default prompt text on non-placeholder shape"
+                        ),
+                    }
+                )
                 continue
+
             if text.strip():
-                report["preserved_business_text"].append({"idx": idx, "name": self._shape_name(shape), "text": text[:120]})
+                report["preserved_business_text"].append(
+                    {
+                        "idx": idx,
+                        "name": self._shape_name(shape),
+                        "text": text[:120],
+                    }
+                )
 
     def _iter_cleanup_shapes(self, slide: Any) -> list[Any]:
         shapes = getattr(slide, "shapes", None)
@@ -503,42 +845,75 @@ class PlaceholderBuilder:
 
     def _placeholder_by_idx(self, slide: Any) -> dict[int, Any]:
         placeholders: dict[int, Any] = {}
+
         for placeholder in getattr(slide, "placeholders", []):
             idx = self._placeholder_idx(placeholder)
             if idx is not None:
                 placeholders[idx] = placeholder
+
         return placeholders
 
     def _placeholder_idx(self, shape: Any) -> int | None:
         try:
             return int(shape.placeholder_format.idx)
-        except Exception:
+        except (AttributeError, TypeError, ValueError):
             return None
 
     def _shape_name(self, shape: Any) -> str | None:
         return getattr(shape, "name", None)
 
     def _shape_text(self, shape: Any) -> str:
-        return (getattr(shape, "text", "") or "").strip() if getattr(shape, "has_text_frame", False) else ""
+        if not getattr(shape, "has_text_frame", False):
+            return ""
+        return (getattr(shape, "text", "") or "").strip()
 
     def _is_placeholder(self, shape: Any) -> bool:
-        return bool(getattr(shape, "is_placeholder", self._placeholder_idx(shape) is not None))
+        return bool(
+            getattr(
+                shape,
+                "is_placeholder",
+                self._placeholder_idx(shape) is not None,
+            )
+        )
 
     def _is_media_placeholder(self, shape: Any) -> bool:
         try:
             placeholder_type = str(shape.placeholder_format.type).upper()
-        except Exception:
+        except (AttributeError, TypeError, ValueError):
             return False
-        return any(token in placeholder_type for token in ("PICTURE", "CHART", "TABLE", "MEDIA", "OBJECT"))
+
+        return any(
+            token in placeholder_type
+            for token in (
+                "PICTURE",
+                "CHART",
+                "TABLE",
+                "MEDIA",
+                "OBJECT",
+            )
+        )
 
     def _is_default_prompt_text(self, text: str) -> bool:
         normalized = " ".join((text or "").split())
         if not normalized:
             return False
-        lines = [" ".join(line.split()) for line in text.splitlines() if line.strip()]
-        if lines and all(any(pattern.search(line) for pattern in DEFAULT_PROMPT_PATTERNS) for line in lines):
+
+        lines = [
+            " ".join(line.split())
+            for line in text.splitlines()
+            if line.strip()
+        ]
+
+        if lines and all(
+            any(pattern.search(line) for pattern in DEFAULT_PROMPT_PATTERNS)
+            for line in lines
+        ):
             return True
-        return any(pattern.search(normalized) for pattern in DEFAULT_PROMPT_PATTERNS)
+
+        return any(
+            pattern.search(normalized)
+            for pattern in DEFAULT_PROMPT_PATTERNS
+        )
 
     def _remove_shape(self, shape: Any) -> None:
         element = shape._element
@@ -546,33 +921,63 @@ class PlaceholderBuilder:
         if parent is not None:
             parent.remove(element)
 
-    def _read_archetype(self, slide_definition: Mapping[str, Any]) -> str:
+    def _read_archetype(
+        self,
+        slide_definition: Mapping[str, Any],
+    ) -> str:
         archetype = slide_definition.get("archetype")
+
         if not isinstance(archetype, str) or not archetype.strip():
-            raise PlaceholderBuilderException("Slide definition must contain a non-empty 'archetype'.")
+            raise PlaceholderBuilderException(
+                "Slide definition must contain a non-empty 'archetype'."
+            )
+
         return archetype.strip().lower()
 
     def _canonical_archetype(self, archetype: str) -> str:
-        return BASELINE_ID_TO_ARCHETYPE.get(archetype.upper(), archetype)
+        return BASELINE_ID_TO_ARCHETYPE.get(
+            archetype.upper(),
+            archetype,
+        )
 
-    def _value_from_path(self, item: Mapping[str, Any], source: str) -> Any:
+    def _value_from_path(
+        self,
+        item: Mapping[str, Any],
+        source: str,
+    ) -> Any:
         current: Any = item
+
         for part in source.split("."):
             if isinstance(current, Mapping):
                 current = current.get(part)
-            elif isinstance(current, Sequence) and not isinstance(current, (str, bytes)):
+            elif isinstance(current, Sequence) and not isinstance(
+                current,
+                (str, bytes),
+            ):
                 if part.isdigit():
                     index = int(part)
-                    current = current[index] if index < len(current) else None
+                    current = (
+                        current[index]
+                        if index < len(current)
+                        else None
+                    )
                 else:
                     return None
             else:
                 return None
+
         return current
 
-    def _first_available_string(self, item: Mapping[str, Any], sources: tuple[str, ...]) -> str | None:
+    def _first_available_string(
+        self,
+        item: Mapping[str, Any],
+        sources: tuple[str, ...],
+    ) -> str | None:
         for source in sources:
-            value = self._normalise_value(self._value_from_path(item, source), "\n")
+            value = self._normalise_value(
+                self._value_from_path(item, source),
+                "\n",
+            )
             if value is not None:
                 return value
         return None
@@ -580,22 +985,49 @@ class PlaceholderBuilder:
     def _word_count(self, value: str) -> int:
         return len(re.findall(r"\b\S+\b", value.strip()))
 
-    def _normalise_value(self, value: Any, join_with: str) -> str | None:
+    def _normalise_value(
+        self,
+        value: Any,
+        join_with: str,
+    ) -> str | None:
         if value is None:
             return None
+
         if isinstance(value, str):
             stripped = value.strip()
             return stripped if stripped else None
-        if isinstance(value, Sequence) and not isinstance(value, (str, bytes)):
+
+        if isinstance(value, Sequence) and not isinstance(
+            value,
+            (str, bytes),
+        ):
             values = []
+
             for entry in value:
                 if isinstance(entry, str) and entry.strip():
                     values.append(entry.strip())
                 elif isinstance(entry, Mapping):
-                    title = entry.get("title") or entry.get("heading") or entry.get("name") or entry.get("number")
-                    body = entry.get("body") or entry.get("text") or entry.get("label") or entry.get("role")
-                    parts = [str(part).strip() for part in (title, body) if part is not None and str(part).strip()]
+                    title = (
+                        entry.get("title")
+                        or entry.get("heading")
+                        or entry.get("name")
+                        or entry.get("number")
+                    )
+                    body = (
+                        entry.get("body")
+                        or entry.get("text")
+                        or entry.get("label")
+                        or entry.get("role")
+                    )
+                    parts = [
+                        str(part).strip()
+                        for part in (title, body)
+                        if part is not None and str(part).strip()
+                    ]
                     if parts:
                         values.append(" - ".join(parts))
+
             return join_with.join(values) if values else None
-        return str(value).strip() if str(value).strip() else None
+
+        rendered = str(value).strip()
+        return rendered if rendered else None

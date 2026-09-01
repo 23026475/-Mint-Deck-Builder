@@ -1,0 +1,195 @@
+{
+  "deck": {
+    "client": "Mint MSP",
+    "title": "FY27 Strategy Overview",
+    "mode": "READ"
+  },
+  "slides": [
+    {
+      "archetype": "A01",
+      "action_title": "FY27 positions Mint for AI-led growth and measurable outcomes.",
+      "fields": {
+        "title": "FY27 Strategy Overview",
+        "kicker": "MINT MSP",
+        "subtitle": "Testing the FY27 AI-Ready presentation engine"
+      }
+    },
+    {
+  "archetype": "B10",
+  "action_title": "The market is shifting toward AI-native operating models.",
+  "fields": {
+    "kicker": "THE SHIFT",
+    "claims": [
+      "AI adoption is moving from experimentation to enterprise scale.",
+      "Organizations require secure and governed AI services."
+    ],
+    "pivot_question": "How can organizations scale AI without increasing operational risk?",
+    "verdict": "Enterprise AI requires governance, security and measurable outcomes."
+  }
+},
+        {
+      "archetype": "B02",
+      "action_title": "Organizations face increasing pressure to modernize and automate.",
+      "fields": {
+        "kicker": "THE STAKES",
+        "cards": [
+          {
+            "title": "Rising Expectations",
+            "body": "Customers expect faster delivery and digital experiences."
+          },
+          {
+            "title": "Operational Complexity",
+            "body": "Technology estates continue to grow across platforms."
+          },
+          {
+            "title": "AI Disruption",
+            "body": "New competitors use AI to improve speed and efficiency."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "B05",
+      "action_title": "FY27 is the year Mint operationalizes AI at scale.",
+      "fields": {
+        "kicker": "MEMORABLE MOMENT",
+        "statement": "FY27 is the year Mint operationalizes AI at scale.",
+        "support": "AI becomes embedded across solutions, services and operations."
+      }
+    },
+    {
+      "archetype": "B02",
+      "action_title": "Mint responds with a focused FY27 growth agenda.",
+      "fields": {
+        "kicker": "OUR ANSWER",
+        "cards": [
+          {
+            "title": "AI Solutions",
+            "body": "Embed AI capabilities into customer offerings."
+          },
+          {
+            "title": "Managed Services",
+            "body": "Scale recurring services and operational excellence."
+          },
+          {
+            "title": "Customer Value",
+            "body": "Deliver measurable business outcomes."
+          },
+          {
+            "title": "Execution Discipline",
+            "body": "Align teams, platforms and governance."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "D03",
+      "action_title": "FY27 focuses execution around four strategic priorities.",
+      "fields": {
+        "kicker": "PRIORITIES",
+        "stats": [
+          {
+            "number": "1",
+            "label": "AI First"
+          },
+          {
+            "number": "2",
+            "label": "Customer Growth"
+          },
+          {
+            "number": "3",
+            "label": "Operational Excellence"
+          },
+          {
+            "number": "4",
+            "label": "People & Capability"
+          }
+        ],
+        "context": "Four priorities guide investment and execution throughout FY27."
+      }
+    },
+    {
+      "archetype": "B04",
+      "action_title": "Customers achieve greater value through AI-enabled services.",
+      "fields": {
+        "kicker": "FUTURE STATE",
+        "headline": "The desired outcome",
+        "body": "Customers benefit from faster delivery, improved visibility, stronger governance and measurable business outcomes enabled by AI-driven services.",
+        "image": "Approved Mint imagery"
+      }
+    },
+    {
+      "archetype": "C01",
+      "action_title": "A structured delivery model turns strategy into outcomes.",
+      "fields": {
+        "kicker": "HOW IT WORKS",
+        "steps": [
+          "Identify opportunities",
+          "Prioritize use cases",
+          "Implement solutions",
+          "Measure outcomes"
+        ]
+      }
+    },
+    {
+      "archetype": "C02",
+      "action_title": "FY27 execution follows a phased delivery roadmap.",
+      "fields": {
+        "kicker": "ROADMAP",
+        "phases": [
+          {
+            "title": "Q1",
+            "milestones": "Align priorities and plans"
+          },
+          {
+            "title": "Q2",
+            "milestones": "Scale delivery initiatives"
+          },
+          {
+            "title": "Q3",
+            "milestones": "Expand adoption and optimization"
+          },
+          {
+            "title": "Q4",
+            "milestones": "Measure impact and prepare FY28"
+          }
+        ],
+        "note": "Execution remains aligned to strategic priorities."
+      }
+    },
+    {
+      "archetype": "B02",
+      "action_title": "Mint already has the capabilities required for execution.",
+      "fields": {
+        "kicker": "PROOF",
+        "cards": [
+          {
+            "title": "Technology Expertise",
+            "body": "Deep capability across managed and digital services."
+          },
+          {
+            "title": "Customer Relationships",
+            "body": "Established enterprise customer base."
+          },
+          {
+            "title": "Delivery Capability",
+            "body": "Proven ability to execute complex programs."
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "B01",
+      "action_title": "FY27 success depends on focused execution and alignment.",
+      "fields": {
+        "kicker": "THE ASK",
+        "bullets": [
+          "Align teams to FY27 priorities",
+          "Accelerate AI adoption initiatives",
+          "Focus on measurable customer outcomes",
+          "Track progress through defined governance"
+        ]
+      }
+    }
+  ]
+}
